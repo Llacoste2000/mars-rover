@@ -11,17 +11,28 @@ export class Rover implements IRover {
     this.position = { x, y };
   }
 
+  private getIndexOfCurrentOrientation() {
+    return orientations.indexOf(this.orientation);
+  }
+
+  private getOrientationFromIndex(index: number) {
+    return orientations[index];
+  }
+
+  private setOrientation(orientation: Orientation) {
+    this.orientation = orientation;
+  }
+
   turnRight() {
-    const currentIndex = orientations.indexOf(this.orientation);
-    const nextIndex = (currentIndex + 1) % orientations.length;
-    this.orientation = orientations[nextIndex];
+    const nextIndex = (this.getIndexOfCurrentOrientation() + 1) % orientations.length;
+
+    this.setOrientation(this.getOrientationFromIndex(nextIndex));
   }
   turnLeft() {
-    const currentIndex = orientations.indexOf(this.orientation);
 
-    const previousIndex = (currentIndex - 1 + orientations.length) % orientations.length;
+    const previousIndex = (this.getIndexOfCurrentOrientation() - 1 + orientations.length) % orientations.length;
 
-    this.orientation = orientations[previousIndex];
+    this.setOrientation(this.getOrientationFromIndex(previousIndex));
   }
   forward() {
     switch (this.orientation) {
@@ -58,6 +69,6 @@ export class Rover implements IRover {
   }
 
   printPosition() {
-    console.log(`Rover orienté ${this.orientation} a la position ${this.position.x},${this.position.y}`);
+    console.log(`Rover orienté ${this.orientation} à la position ${this.position.x},${this.position.y}`);
   }
 }
