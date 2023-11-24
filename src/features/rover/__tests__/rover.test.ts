@@ -1,6 +1,8 @@
+import { Planet } from "../../planet/planet";
 import { Rover } from "../rover";
 
-const rover = new Rover(0, 0);
+const map = new Planet({ x: 5, y: 5 });
+const rover = new Rover(0, 0, map);
 
 describe("Rover", () => {
   beforeEach(() => {
