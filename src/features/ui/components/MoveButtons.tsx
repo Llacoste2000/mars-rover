@@ -1,4 +1,5 @@
 import { Button, HStack } from "@chakra-ui/react";
+import { memo } from "react";
 
 type MoveButtonsProps = {
   forward: () => void;
@@ -18,4 +19,5 @@ const MoveButtons = ({ backward, forward }: MoveButtonsProps) => {
   );
 };
 
-export default MoveButtons;
+const MemoizedMoveButtons = memo(MoveButtons);
+export default MemoizedMoveButtons;

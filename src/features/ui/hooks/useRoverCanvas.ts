@@ -10,7 +10,10 @@ const useRover = (
   planetWidth?: number,
 ) => {
   const [rover, setRover] = useState<Rover | null>(null);
-  const planetSize = { x: planetWidth ?? 10, y: planetHeight ?? 10 };
+  const [planetSize, setPlanetSize] = useState({
+    x: planetWidth ?? 10,
+    y: planetHeight ?? 10,
+  });
 
   const scale = 15;
   const roverSize = 15;
@@ -107,35 +110,50 @@ const useRover = (
     scale,
   ]);
 
-  const forward = () => {
+  useEffect(() => {
+    console.log("useEffect");
+
+    if (!canvasRef.current) return;
+
+    const ctx = canvasRef.current.getContext("2d");
+    if (!ctx) return;
+
+    if (!rover) return;
+
+    drawRover(ctx, rover);
+  }, [planetSize.x, planetSize.y, rover, drawRover, canvasRef]);
+
+  const forward = useCallback(() => {
     if (!rover) return;
     rover.forward();
     drawRover(canvasRef.current!.getContext("2d")!, rover);
-  };
+  }, [canvasRef, drawRover, rover]);
 
-  const backward = () => {
+  const backward = useCallback(() => {
     if (!rover) return;
     rover.backward();
     drawRover(canvasRef.current!.getContext("2d")!, rover);
-  };
+  }, [canvasRef, drawRover, rover]);
 
-  const turnRight = () => {
+  const turnRight = useCallback(() => {
     if (!rover) return;
     rover.turnRight();
     drawRover(canvasRef.current!.getContext("2d")!, rover);
-  };
+  }, [canvasRef, drawRover, rover]);
 
-  const turnLeft = () => {
+  const turnLeft = useCallback(() => {
     if (!rover) return;
     rover.turnLeft();
     drawRover(canvasRef.current!.getContext("2d")!, rover);
-  };
+  }, [canvasRef, drawRover, rover]);
 
   return {
     forward,
     backward,
     turnRight,
     turnLeft,
+    setPlanetSize,
+    planetSize,
   };
 };
 

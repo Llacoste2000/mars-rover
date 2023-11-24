@@ -1,4 +1,5 @@
 import { Button, HStack } from "@chakra-ui/react";
+import { memo } from "react";
 
 type TurnButtonsProps = {
   turnLeft: () => void;
@@ -18,4 +19,5 @@ const TurnButtons = ({ turnLeft, turnRight }: TurnButtonsProps) => {
   );
 };
 
-export default TurnButtons;
+const MemoizedTurnButtons = memo(TurnButtons);
+export default MemoizedTurnButtons;
