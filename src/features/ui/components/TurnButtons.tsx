@@ -1,24 +1,17 @@
 import { Button, HStack } from "@chakra-ui/react";
 
-const TurnButtons = () => {
+type TurnButtonsProps = {
+  turnLeft: () => void;
+  turnRight: () => void;
+};
+
+const TurnButtons = ({ turnLeft, turnRight }: TurnButtonsProps) => {
   return (
     <HStack position="absolute" top="4" left="75%" translateX="-50%">
-      <Button
-        aria-label="Turn right"
-        onClick={() => {
-          // TODO turn right
-          console.log("turn right");
-        }}
-      >
+      <Button aria-label="Turn right" onClick={turnRight}>
         TURN RIGHT
       </Button>
-      <Button
-        aria-label="Turn left"
-        onClick={() => {
-          // TODO turn left
-          console.log("turn left");
-        }}
-      >
+      <Button aria-label="Turn left" onClick={turnLeft}>
         TURN LEFT
       </Button>
     </HStack>
