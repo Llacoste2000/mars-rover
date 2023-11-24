@@ -7,7 +7,7 @@ type MoveButtonsProps = {
 
 const MoveButtons = ({ backward, forward }: MoveButtonsProps) => {
   return (
-    <HStack position="absolute" top="4" left="25%" translateX="-50%">
+    <HStack position="absolute" top="4" left="25%" transform="translateX(-50%)">
       <Button aria-label="Move up" onClick={forward}>
         FORWARD
       </Button>

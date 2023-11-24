@@ -7,7 +7,7 @@ type TurnButtonsProps = {
 
 const TurnButtons = ({ turnLeft, turnRight }: TurnButtonsProps) => {
   return (
-    <HStack position="absolute" top="4" left="75%" translateX="-50%">
+    <HStack position="absolute" top="4" left="75%" transform="translateX(-50%)">
       <Button aria-label="Turn right" onClick={turnRight}>
         TURN RIGHT
       </Button>
