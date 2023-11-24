@@ -1,14 +1,20 @@
-import { EOrientation, IRover, Orientation, Position, orientations } from "./types";
+import {
+  EOrientation,
+  IRover,
+  Orientation,
+  Position,
+  orientations,
+} from "./types";
 import { Planet } from "../planet/planet.ts";
-
-const map = new Planet({ x: 5, y: 5 })
 
 export class Rover implements IRover {
   orientation: Orientation = EOrientation.N;
   position: Position = { x: 0, y: 0 };
+  map: Planet;
 
-  constructor(x: number, y: number) {
+  constructor(x: number, y: number, map: Planet) {
     this.position = { x, y };
+    this.map = map;
   }
 
   private getIndexOfCurrentOrientation() {
@@ -24,51 +30,58 @@ export class Rover implements IRover {
   }
 
   turnRight() {
-    const nextIndex = (this.getIndexOfCurrentOrientation() + 1) % orientations.length;
+    const nextIndex =
+      (this.getIndexOfCurrentOrientation() + 1) % orientations.length;
 
     this.setOrientation(this.getOrientationFromIndex(nextIndex));
   }
   turnLeft() {
-
-    const previousIndex = (this.getIndexOfCurrentOrientation() - 1 + orientations.length) % orientations.length;
+    const previousIndex =
+      (this.getIndexOfCurrentOrientation() - 1 + orientations.length) %
+      orientations.length;
 
     this.setOrientation(this.getOrientationFromIndex(previousIndex));
   }
   forward() {
     switch (this.orientation) {
       case EOrientation.N:
-        this.position.y = (this.position.y + 1) % map.getMaxY();
+        this.position.y = (this.position.y + 1) % this.map.getMaxY();
         break;
       case EOrientation.E:
-        this.position.x = (this.position.x + 1) % map.getMaxX();
+        this.position.x = (this.position.x + 1) % this.map.getMaxX();
         break;
       case EOrientation.S:
-        this.position.y = (this.position.y - 1 + map.getMaxY()) % map.getMaxY();
+        this.position.y =
+          (this.position.y - 1 + this.map.getMaxY()) % this.map.getMaxY();
         break;
       case EOrientation.W:
-        this.position.x = (this.position.x - 1 + map.getMaxX()) % map.getMaxX();
+        this.position.x =
+          (this.position.x - 1 + this.map.getMaxX()) % this.map.getMaxX();
         break;
     }
   }
-  backward(
-  ) {
+  backward() {
     switch (this.orientation) {
       case EOrientation.N:
-        this.position.y = (this.position.y - 1 + map.getMaxY()) % map.getMaxY();
+        this.position.y =
+          (this.position.y - 1 + this.map.getMaxY()) % this.map.getMaxY();
         break;
       case EOrientation.E:
-        this.position.x = (this.position.x - 1 + map.getMaxX()) % map.getMaxX();
+        this.position.x =
+          (this.position.x - 1 + this.map.getMaxX()) % this.map.getMaxX();
         break;
       case EOrientation.S:
-        this.position.y = (this.position.y + 1) % map.getMaxY();
+        this.position.y = (this.position.y + 1) % this.map.getMaxY();
         break;
       case EOrientation.W:
-        this.position.x = (this.position.x + 1) % map.getMaxX();
+        this.position.x = (this.position.x + 1) % this.map.getMaxX();
         break;
     }
   }
 
   printPosition() {
-    console.log(`Rover orienté ${this.orientation} à la position ${this.position.x},${this.position.y}`);
+    console.log(
+      `Rover orienté ${this.orientation} à la position ${this.position.x},${this.position.y}`,
+    );
   }
 }
