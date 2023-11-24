@@ -1,48 +1,34 @@
+import { EOrientation, IRover, Orientation, Position, orientations } from "../../features/rover/types.ts";
 import { Planet } from "../planet/planet.ts";
-
-const orientations = {
-  N: "N",
-  E: "E",
-  S: "S",
-  W: "W",
-} as const
-
-interface Position {
-  x: number;
-  y: number;
-}
-
-type Orientation = typeof orientations[keyof typeof orientations];
-const orientationsArray = Object.values(orientations)
 
 const map = new Planet({ x: 5, y: 5 })
 
-export class Rover {
-  orientation: Orientation = orientations.N;
+export class Rover implements IRover {
+  orientation: Orientation = EOrientation.N;
   position: Position = { x: 0, y: 0 };
 
   turnRight() {
-    const currentIndex = orientationsArray.indexOf(this.orientation);
-    const nextIndex = (currentIndex + 1) % orientationsArray.length;
-    this.orientation = orientationsArray[nextIndex];
+    const currentIndex = orientations.indexOf(this.orientation);
+    const nextIndex = (currentIndex + 1) % orientations.length;
+    this.orientation = orientations[nextIndex];
   }
   turnLeft() {
-    const currentIndex = orientationsArray.indexOf(this.orientation);
-    const nextIndex = (currentIndex - 1) % orientationsArray.length;
-    this.orientation = orientationsArray[nextIndex];
+    const currentIndex = orientations.indexOf(this.orientation);
+    const nextIndex = (currentIndex - 1) % orientations.length;
+    this.orientation = orientations[nextIndex];
   }
   forward() {
     switch (this.orientation) {
-      case orientations.N:
+      case EOrientation.N:
         this.position.y = (this.position.y + 1) % map.getMaxY();
         break;
-      case orientations.E:
+      case EOrientation.E:
         this.position.x = (this.position.x + 1) % map.getMaxX();
         break;
-      case orientations.S:
+      case EOrientation.S:
         this.position.y = (this.position.y - 1 + map.getMaxY()) % map.getMaxY();
         break;
-      case orientations.W:
+      case EOrientation.W:
         this.position.x = (this.position.x - 1 + map.getMaxX()) % map.getMaxX();
         break;
     }
@@ -50,16 +36,16 @@ export class Rover {
   backward(
   ) {
     switch (this.orientation) {
-      case orientations.N:
+      case EOrientation.N:
         this.position.y = (this.position.y - 1 + map.getMaxY()) % map.getMaxY();
         break;
-      case orientations.E:
+      case EOrientation.E:
         this.position.x = (this.position.x - 1 + map.getMaxX()) % map.getMaxX();
         break;
-      case orientations.S:
+      case EOrientation.S:
         this.position.y = (this.position.y + 1) % map.getMaxY();
         break;
-      case orientations.W:
+      case EOrientation.W:
         this.position.x = (this.position.x + 1) % map.getMaxX();
         break;
     }

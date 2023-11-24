@@ -2,10 +2,10 @@ export interface IRover {
   orientation: Orientation;
   position: Position;
 
-  tournerADroite(): IRover;
-  tournerAGauche(): IRover;
-  avancer(): IRover;
-  reculer(): IRover;
+  turnRight(): void;
+  turnLeft(): void;
+  forward(): void;
+  backward(): void;
 }
 
 export const EOrientation = {
@@ -15,8 +15,9 @@ export const EOrientation = {
   W: "W",
 } as const;
 export type Orientation = (typeof EOrientation)[keyof typeof EOrientation];
+export const orientations = Object.values(EOrientation)
 
 export interface Position {
-  X: number;
-  Y: number;
+  x: number;
+  y: number;
 }
