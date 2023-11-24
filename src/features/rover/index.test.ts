@@ -1,15 +1,22 @@
 import { Rover } from "./rover"
+import { orientations } from "./types"
 
-const rover = new Rover()
+const rover = new Rover(1, 1)
 
-console.log(rover.position)
 
-rover.forward()
-rover.forward()
-rover.forward()
-rover.forward()
-rover.forward()
-rover.forward()
-rover.forward()
+rover.printPosition()
 
-console.log(rover.position)
+rover.forward();
+rover.forward();
+rover.forward();
+rover.forward();
+rover.forward();
+rover.forward();
+rover.turnRight();
+rover.backward();
+rover.turnRight();
+rover.forward();
+rover.turnRight();
+rover.forward();
+
+rover.printPosition()

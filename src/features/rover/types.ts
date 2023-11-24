@@ -15,7 +15,13 @@ export const EOrientation = {
   W: "W",
 } as const;
 export type Orientation = (typeof EOrientation)[keyof typeof EOrientation];
-export const orientations = Object.values(EOrientation)
+
+export const orientations = [
+  EOrientation.N,
+  EOrientation.E,
+  EOrientation.S,
+  EOrientation.W,
+];
 
 export interface Position {
   x: number;

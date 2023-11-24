@@ -1,15 +1,11 @@
 import { EOrientation, IRover, Orientation, Position, orientations } from "./types.js";
-import { Planet } from "../planet/planet.ts";
+import { Planet } from "../../features/planet/planet.ts";
 
 const map = new Planet({ x: 5, y: 5 })
 
 export class Rover implements IRover {
   orientation: Orientation = EOrientation.N;
   position: Position = { x: 0, y: 0 };
-
-  constructor(x: number, y: number) {
-    this.position = { x, y };
-  }
 
   turnRight() {
     const currentIndex = orientations.indexOf(this.orientation);
@@ -18,10 +14,8 @@ export class Rover implements IRover {
   }
   turnLeft() {
     const currentIndex = orientations.indexOf(this.orientation);
-
-    const previousIndex = (currentIndex - 1 + orientations.length) % orientations.length;
-
-    this.orientation = orientations[previousIndex];
+    const nextIndex = (currentIndex - 1) % orientations.length;
+    this.orientation = orientations[nextIndex];
   }
   forward() {
     switch (this.orientation) {
@@ -55,9 +49,5 @@ export class Rover implements IRover {
         this.position.x = (this.position.x + 1) % map.getMaxX();
         break;
     }
-  }
-
-  printPosition() {
-    console.log(`Rover orienté ${this.orientation} a la position ${this.position.x},${this.position.y}`);
   }
 }
