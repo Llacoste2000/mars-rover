@@ -1,6 +1,6 @@
 import { Button, HStack } from "@chakra-ui/react";
 
-const MoveButtons = () => {
+const TurnButtons = () => {
   return (
     <HStack position="absolute" top="4" left="75%" translateX="-50%">
       <Button
@@ -25,4 +25,4 @@ const MoveButtons = () => {
   );
 };
 
-export default MoveButtons;
+export default TurnButtons;
