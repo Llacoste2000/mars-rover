@@ -1,4 +1,4 @@
-import { Rover } from "./rover/rover"
+import { Rover } from "./rover"
 
 const rover = new Rover()
 

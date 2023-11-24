@@ -1,4 +1,4 @@
-import { EOrientation, IRover, Orientation, Position, orientations } from "../../features/rover/types.ts";
+import { EOrientation, IRover, Orientation, Position, orientations } from "./types.js";
 import { Planet } from "../planet/planet.ts";
 
 const map = new Planet({ x: 5, y: 5 })
