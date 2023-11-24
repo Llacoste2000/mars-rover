@@ -1,10 +1,8 @@
-import { Rover } from "./rover"
-import { orientations } from "./types"
+import { Rover } from "./rover";
 
-const rover = new Rover(1, 1)
+const rover = new Rover(1, 1);
 
-
-rover.printPosition()
+rover.printPosition();
 
 // rover.forward();
 // rover.turnRight();
