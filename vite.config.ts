@@ -8,9 +8,6 @@ export default defineConfig({
   plugins: [react()],
   test: {
     globals: true,
-    environment: "jsdom",
-    setupFiles: "./src/setupTest.tsx",
-    globalSetup: "./src/globalSetupTest.ts",
     threads: true,
     minThreads: 1,
     maxThreads: 8,
