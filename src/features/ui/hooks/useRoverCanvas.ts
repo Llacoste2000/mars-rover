@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Rover } from "../../rover/rover.ts";
+import { Planet } from "../../planet/planet.ts";
 
 const useRover = (
   canvasRef: React.RefObject<HTMLCanvasElement>,
@@ -11,94 +12,87 @@ const useRover = (
   const [rover, setRover] = useState<Rover | null>(null);
   const planetSize = { x: planetWidth ?? 10, y: planetHeight ?? 10 };
 
-  const scale = 10;
+  const scale = 15;
+  const roverSize = 15;
 
   const drawRover = useCallback(
     (ctx: CanvasRenderingContext2D, rover: Rover) => {
+      // Clear planet
       ctx.clearRect(0, 0, planetSize.x * scale, planetSize.y * scale);
       ctx.strokeRect(0, 0, planetSize.x * scale, planetSize.y * scale);
+
+      // Draw rover body
       ctx.fillStyle = "blue";
       ctx.fillRect(
         rover.position.x * scale,
-        (planetSize.y - rover.position.y) * scale - 3 * scale,
-        3 * scale,
-        3 * scale,
+        (planetSize.y - rover.position.y) * scale - roverSize,
+        roverSize,
+        roverSize,
       );
+
+      // Draw direction arrow on rover
       ctx.fillStyle = "red";
       ctx.beginPath();
       switch (rover.orientation) {
         case "N":
-          ctx.moveTo(
-            rover.position.x * scale + 1.5 * scale,
-            (planetSize.y - rover.position.y) * scale - 3 * scale,
-          );
-          ctx.lineTo(
-            rover.position.x * scale + 2.25 * scale,
-            (planetSize.y - rover.position.y) * scale - 2.25 * scale,
-          );
-          ctx.lineTo(
-            rover.position.x * scale + 0.75 * scale,
-            (planetSize.y - rover.position.y) * scale - 2.25 * scale,
+          ctx.fillRect(
+            rover.position.x * scale + roverSize / 2 - roverSize / 6,
+            (planetSize.y - rover.position.y) * scale - roverSize,
+            roverSize / 3,
+            roverSize / 3,
           );
           break;
         case "E":
-          ctx.moveTo(
-            rover.position.x * scale + 3 * scale,
-            (planetSize.y - rover.position.y) * scale - 1.5 * scale,
-          );
-          ctx.lineTo(
-            rover.position.x * scale + 2.25 * scale,
-            (planetSize.y - rover.position.y) * scale - 2.25 * scale,
-          );
-          ctx.lineTo(
-            rover.position.x * scale + 2.25 * scale,
-            (planetSize.y - rover.position.y) * scale - 0.75 * scale,
+          ctx.fillRect(
+            rover.position.x * scale + roverSize - roverSize / 3,
+            (planetSize.y - rover.position.y) * scale -
+              roverSize / 2 -
+              roverSize / 6,
+            roverSize / 3,
+            roverSize / 3,
           );
           break;
         case "S":
-          ctx.moveTo(
-            rover.position.x * scale + 1.5 * scale,
-            (planetSize.y - rover.position.y) * scale,
-          );
-          ctx.lineTo(
-            rover.position.x * scale + 2.25 * scale,
-            (planetSize.y - rover.position.y) * scale - 0.75 * scale,
-          );
-          ctx.lineTo(
-            rover.position.x * scale + 0.75 * scale,
-            (planetSize.y - rover.position.y) * scale - 0.75 * scale,
+          ctx.fillRect(
+            rover.position.x * scale + roverSize / 2 - roverSize / 6,
+            (planetSize.y - rover.position.y) * scale -
+              roverSize / 2 +
+              roverSize / 6,
+            roverSize / 3,
+            roverSize / 3,
           );
           break;
         case "W":
-          ctx.moveTo(
+          ctx.fillRect(
             rover.position.x * scale,
-            (planetSize.y - rover.position.y) * scale - 1.5 * scale,
-          );
-          ctx.lineTo(
-            rover.position.x * scale + 0.75 * scale,
-            (planetSize.y - rover.position.y) * scale - 2.25 * scale,
-          );
-          ctx.lineTo(
-            rover.position.x * scale + 0.75 * scale,
-            (planetSize.y - rover.position.y) * scale - 0.75 * scale,
+            (planetSize.y - rover.position.y) * scale -
+              roverSize / 2 -
+              roverSize / 6,
+            roverSize / 3,
+            roverSize / 3,
           );
           break;
       }
       ctx.fill();
     },
-    [planetSize.x, planetSize.y, scale],
+    [planetSize.x, planetSize.y, roverSize],
   );
+
   useEffect(() => {
     if (!canvasRef.current) return;
 
     const ctx = canvasRef.current.getContext("2d");
     if (!ctx) return;
 
-    // On multiplie la taille du canvas par scale
     canvasRef.current.width = planetSize.x * scale;
     canvasRef.current.height = planetSize.y * scale;
 
-    const newRover = new Rover(roverPositionX ?? 0, roverPositionY ?? 0);
+    const map = new Planet({
+      x: planetSize.x,
+      y: planetSize.y,
+    });
+
+    const newRover = new Rover(roverPositionX ?? 0, roverPositionY ?? 0, map);
     setRover(newRover);
     drawRover(ctx, newRover);
   }, [
