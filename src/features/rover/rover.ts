@@ -30,6 +30,8 @@ export class Rover implements IRover {
       (this.getIndexOfCurrentOrientation() + 1) % orientations.length;
 
     this.setOrientation(this.getOrientationFromIndex(nextIndex));
+
+    return this;
   }
   turnLeft() {
     const previousIndex =
@@ -37,6 +39,8 @@ export class Rover implements IRover {
       orientations.length;
 
     this.setOrientation(this.getOrientationFromIndex(previousIndex));
+
+    return this;
   }
   forward() {
     switch (this.orientation) {
@@ -55,6 +59,8 @@ export class Rover implements IRover {
           (this.position.x - 1 + this.planet.getMaxX()) % this.planet.getMaxX();
         break;
     }
+
+    return this;
   }
   backward() {
     switch (this.orientation) {
@@ -73,6 +79,8 @@ export class Rover implements IRover {
         this.position.x = (this.position.x + 1) % this.planet.getMaxX();
         break;
     }
+
+    return this;
   }
 
   printPosition() {

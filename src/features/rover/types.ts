@@ -2,10 +2,10 @@ export interface IRover {
   orientation: Orientation;
   position: Position;
 
-  turnRight(): void;
-  turnLeft(): void;
-  forward(): void;
-  backward(): void;
+  turnRight(): IRover;
+  turnLeft(): IRover;
+  forward(): IRover;
+  backward(): IRover;
 }
 
 export const EOrientation = {

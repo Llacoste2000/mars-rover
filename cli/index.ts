@@ -8,14 +8,7 @@ const rover = new RoverBuilder()
 
 rover.printPosition();
 
-// rover.forward();
-// rover.turnRight();
-// rover.backward();
-// rover.turnRight();
-// rover.forward();
-// rover.turnRight();
-// rover.forward();
-rover.backward();
-rover.backward();
+rover.forward().turnLeft().forward()
+
 
 rover.printPosition();
