@@ -1,11 +1,9 @@
 import {
-  EOrientation,
   IRover,
-  Orientation,
   Position,
-  orientations,
 } from "./types";
 import { Planet } from "../planet/planet.ts";
+import { EOrientation, Orientation } from "../orientation/Orientation.ts";
 
 export class Rover implements IRover {
 
@@ -13,37 +11,26 @@ export class Rover implements IRover {
   constructor(public position: Position, public orientation: Orientation, private planet: Planet) {
   }
 
-  private getIndexOfCurrentOrientation() {
-    return orientations.indexOf(this.orientation);
-  }
-
-  private getOrientationFromIndex(index: number) {
-    return orientations[index];
-  }
-
   private setOrientation(orientation: Orientation) {
     this.orientation = orientation;
   }
 
   turnRight() {
-    const nextIndex =
-      (this.getIndexOfCurrentOrientation() + 1) % orientations.length;
+    const rightOrientation = this.orientation.right()
 
-    this.setOrientation(this.getOrientationFromIndex(nextIndex));
+    this.setOrientation(rightOrientation);
 
     return this;
   }
-  turnLeft() {
-    const previousIndex =
-      (this.getIndexOfCurrentOrientation() - 1 + orientations.length) %
-      orientations.length;
+  turnLeft(): this {
+    const leftOrientation = this.orientation.left()
 
-    this.setOrientation(this.getOrientationFromIndex(previousIndex));
+    this.setOrientation(leftOrientation);
 
     return this;
   }
   forward() {
-    switch (this.orientation) {
+    switch (this.orientation.letter) {
       case EOrientation.N:
         this.position.y = (this.position.y + 1) % this.planet.getMaxY();
         break;
@@ -63,7 +50,7 @@ export class Rover implements IRover {
     return this;
   }
   backward() {
-    switch (this.orientation) {
+    switch (this.orientation.letter) {
       case EOrientation.N:
         this.position.y =
           (this.position.y - 1 + this.planet.getMaxY()) % this.planet.getMaxY();
@@ -85,7 +72,7 @@ export class Rover implements IRover {
 
   printPosition() {
     console.log(
-      `Rover orienté ${this.orientation} à la position ${this.position.x},${this.position.y}`,
+      `Rover orienté ${this.orientation.letter} à la position ${this.position.x},${this.position.y}`,
     );
   }
 }

@@ -37,7 +37,7 @@ const useRover = (
       // Draw direction arrow on rover
       ctx.fillStyle = "red";
       ctx.beginPath();
-      switch (rover.orientation) {
+      switch (rover.orientation.letter) {
         case "N":
           ctx.fillRect(
             rover.position.x * scale + roverSize / 2 - roverSize / 6,

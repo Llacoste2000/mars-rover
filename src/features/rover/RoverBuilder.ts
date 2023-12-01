@@ -1,10 +1,11 @@
+import { Orientation, EOrientation } from "../orientation/Orientation";
 import { Planet } from "../planet/planet";
 import { Rover } from "./rover";
-import { EOrientation, Orientation, Position, orientations } from "./types";
+import { Position } from "./types";
 
 export class RoverBuilder {
   private position: Position = { x: 0, y: 0 };
-  private orientation: Orientation = EOrientation.N;
+  private orientation: Orientation = new Orientation(EOrientation.N);
   private planet: Planet = new Planet({ x: 5, y: 5 });
 
   oriented(orientation: Orientation): this {
