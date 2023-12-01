@@ -1,8 +1,8 @@
 import { Planet } from "../../planet/planet";
-import { Rover } from "../rover";
+import { RoverBuilder } from "../RoverBuilder";
 
 const map = new Planet({ x: 5, y: 5 });
-const rover = new Rover(0, 0, map);
+const rover = new RoverBuilder().onPlanet(map).build();
 
 describe("Rover", () => {
   beforeEach(() => {

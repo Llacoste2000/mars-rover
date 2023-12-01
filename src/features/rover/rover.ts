@@ -8,13 +8,9 @@ import {
 import { Planet } from "../planet/planet.ts";
 
 export class Rover implements IRover {
-  orientation: Orientation = EOrientation.N;
-  position: Position = { x: 0, y: 0 };
-  planet: Planet;
 
-  constructor(x: number, y: number, planet: Planet) {
-    this.position = { x, y };
-    this.planet = planet;
+
+  constructor(public position: Position, public orientation: Orientation, private planet: Planet) {
   }
 
   private getIndexOfCurrentOrientation() {

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Rover } from "../../rover/rover.ts";
 import { Planet } from "../../planet/planet.ts";
+import { RoverBuilder } from "../../rover/RoverBuilder.ts";
 
 const useRover = (
   canvasRef: React.RefObject<HTMLCanvasElement>,
@@ -49,8 +50,8 @@ const useRover = (
           ctx.fillRect(
             rover.position.x * scale + roverSize - roverSize / 3,
             (planetSize.y - rover.position.y) * scale -
-              roverSize / 2 -
-              roverSize / 6,
+            roverSize / 2 -
+            roverSize / 6,
             roverSize / 3,
             roverSize / 3,
           );
@@ -59,8 +60,8 @@ const useRover = (
           ctx.fillRect(
             rover.position.x * scale + roverSize / 2 - roverSize / 6,
             (planetSize.y - rover.position.y) * scale -
-              roverSize / 2 +
-              roverSize / 6,
+            roverSize / 2 +
+            roverSize / 6,
             roverSize / 3,
             roverSize / 3,
           );
@@ -69,8 +70,8 @@ const useRover = (
           ctx.fillRect(
             rover.position.x * scale,
             (planetSize.y - rover.position.y) * scale -
-              roverSize / 2 -
-              roverSize / 6,
+            roverSize / 2 -
+            roverSize / 6,
             roverSize / 3,
             roverSize / 3,
           );
@@ -95,7 +96,8 @@ const useRover = (
       y: planetSize.y,
     });
 
-    const newRover = new Rover(roverPositionX ?? 0, roverPositionY ?? 0, map);
+    const newRover = new RoverBuilder().onPlanet(map).withPosition({ x: roverPositionX ?? 0, y: roverPositionY ?? 0 }).build();
+
     setRover(newRover);
     drawRover(ctx, newRover);
   }, [

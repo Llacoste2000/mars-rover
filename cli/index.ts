@@ -1,7 +1,10 @@
 import { Planet } from "../src/features/planet/planet";
-import { Rover } from "../src/features/rover/rover";
+import { RoverBuilder } from "../src/features/rover/RoverBuilder";
 
-const rover = new Rover(1, 1, new Planet({ x: 5, y: 5 }));
+const rover = new RoverBuilder()
+  .onPlanet(new Planet({ x: 5, y: 5 }))
+  .withPosition({ x: 1, y: 1 })
+  .build();
 
 rover.printPosition();
 
