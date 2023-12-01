@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Rover } from "../../rover/rover.ts";
-import { Planet } from "../../planet/planet.ts";
 import { RoverBuilder } from "../../rover/RoverBuilder.ts";
+import { PlanetToroidal } from "../../planet/PlanetToroidal.ts";
 
 const useRover = (
   canvasRef: React.RefObject<HTMLCanvasElement>,
@@ -91,7 +91,7 @@ const useRover = (
     canvasRef.current.width = planetSize.x * scale;
     canvasRef.current.height = planetSize.y * scale;
 
-    const map = new Planet({
+    const map = new PlanetToroidal({
       x: planetSize.x,
       y: planetSize.y,
     });

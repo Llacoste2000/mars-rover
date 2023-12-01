@@ -2,13 +2,11 @@ import {
   IRover,
   Position,
 } from "./types";
-import { Planet } from "../planet/planet.ts";
 import { EOrientation, Orientation } from "../orientation/Orientation.ts";
+import { IPlanet } from "../planet/Planet.interface.ts";
 
 export class Rover implements IRover {
-
-
-  constructor(public position: Position, public orientation: Orientation, private planet: Planet) {
+  constructor(public position: Position, public orientation: Orientation, private planet: IPlanet) {
   }
 
   private setOrientation(orientation: Orientation) {
@@ -32,18 +30,28 @@ export class Rover implements IRover {
   forward() {
     switch (this.orientation.letter) {
       case EOrientation.N:
-        this.position.y = (this.position.y + 1) % this.planet.getMaxY();
+        this.position = this.planet.normalize({
+          x: this.position.x,
+          y: this.position.y + 1,
+        });
         break;
       case EOrientation.E:
-        this.position.x = (this.position.x + 1) % this.planet.getMaxX();
+        this.position = this.planet.normalize({
+          x: this.position.x + 1,
+          y: this.position.y,
+        });
         break;
       case EOrientation.S:
-        this.position.y =
-          (this.position.y - 1 + this.planet.getMaxY()) % this.planet.getMaxY();
+        this.position = this.planet.normalize({
+          x: this.position.x + this.planet.size.x,
+          y: this.position.y - 1,
+        });
         break;
       case EOrientation.W:
-        this.position.x =
-          (this.position.x - 1 + this.planet.getMaxX()) % this.planet.getMaxX();
+        this.position = this.planet.normalize({
+          x: this.position.x - 1 + this.planet.size.x,
+          y: this.position.y,
+        });
         break;
     }
 
@@ -52,18 +60,28 @@ export class Rover implements IRover {
   backward() {
     switch (this.orientation.letter) {
       case EOrientation.N:
-        this.position.y =
-          (this.position.y - 1 + this.planet.getMaxY()) % this.planet.getMaxY();
+        this.position = this.planet.normalize({
+          x: this.position.x,
+          y: this.position.y - 1 + this.planet.size.y,
+        });
         break;
       case EOrientation.E:
-        this.position.x =
-          (this.position.x - 1 + this.planet.getMaxX()) % this.planet.getMaxX();
+        this.position = this.planet.normalize({
+          x: this.position.x - 1 + this.planet.size.x,
+          y: this.position.y,
+        });
         break;
       case EOrientation.S:
-        this.position.y = (this.position.y + 1) % this.planet.getMaxY();
+        this.position = this.planet.normalize({
+          x: this.position.x,
+          y: this.position.y + 1,
+        });
         break;
       case EOrientation.W:
-        this.position.x = (this.position.x + 1) % this.planet.getMaxX();
+        this.position = this.planet.normalize({
+          x: this.position.x + 1,
+          y: this.position.y,
+        });
         break;
     }
 

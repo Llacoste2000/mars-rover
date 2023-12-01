@@ -1,37 +1,38 @@
-import { Planet } from "../../planet/planet";
+import { EOrientation, Orientation } from "../../orientation/Orientation";
+import { PlanetToroidal } from "../../planet/PlanetToroidal";
 import { RoverBuilder } from "../RoverBuilder";
 
-const map = new Planet({ x: 5, y: 5 });
+const map = new PlanetToroidal({ x: 5, y: 5 });
 const rover = new RoverBuilder().onPlanet(map).build();
 
 describe("Rover", () => {
   beforeEach(() => {
     rover.position = { x: 0, y: 0 };
-    rover.orientation = "N";
+    rover.orientation = new Orientation(EOrientation.N);
   });
 
   it("turnRight", () => {
-    expect(rover.orientation).toBe("N");
+    expect(rover.orientation.letter).toBe("N");
     rover.turnRight();
-    expect(rover.orientation).toBe("E");
+    expect(rover.orientation.letter).toBe("E");
     rover.turnRight();
-    expect(rover.orientation).toBe("S");
+    expect(rover.orientation.letter).toBe("S");
     rover.turnRight();
-    expect(rover.orientation).toBe("W");
+    expect(rover.orientation.letter).toBe("W");
     rover.turnRight();
-    expect(rover.orientation).toBe("N");
+    expect(rover.orientation.letter).toBe("N");
   });
 
   it("turnLeft", () => {
-    expect(rover.orientation).toBe("N");
+    expect(rover.orientation.letter).toBe("N");
     rover.turnLeft();
-    expect(rover.orientation).toBe("W");
+    expect(rover.orientation.letter).toBe("W");
     rover.turnLeft();
-    expect(rover.orientation).toBe("S");
+    expect(rover.orientation.letter).toBe("S");
     rover.turnLeft();
-    expect(rover.orientation).toBe("E");
+    expect(rover.orientation.letter).toBe("E");
     rover.turnLeft();
-    expect(rover.orientation).toBe("N");
+    expect(rover.orientation.letter).toBe("N");
   });
 
   it("forward", () => {

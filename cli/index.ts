@@ -1,14 +1,17 @@
-import { Planet } from "../src/features/planet/planet";
+import { PlanetToroidal } from "../src/features/planet/PlanetToroidal";
 import { RoverBuilder } from "../src/features/rover/RoverBuilder";
 
 const rover = new RoverBuilder()
-  .onPlanet(new Planet({ x: 5, y: 5 }))
-  .withPosition({ x: 1, y: 1 })
+  .onPlanet(new PlanetToroidal({ x: 5, y: 5 }))
+  .withPosition({ x: 0, y: 0 })
   .build();
 
 rover.printPosition();
 
-rover.forward().turnLeft().forward()
+rover.forward().forward().forward().forward();
 
+rover.printPosition();
+
+rover.turnRight().backward().backward().backward();
 
 rover.printPosition();
