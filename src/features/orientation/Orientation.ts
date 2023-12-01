@@ -1,4 +1,3 @@
-
 export const EOrientation = {
   N: "N",
   S: "S",
@@ -8,7 +7,7 @@ export const EOrientation = {
 export type OrientationLetter = (typeof EOrientation)[keyof typeof EOrientation];
 
 export class Orientation {
-  public letter: OrientationLetter;
+  public readonly letter: OrientationLetter;
 
   constructor(orientation: OrientationLetter) {
     this.letter = orientation;

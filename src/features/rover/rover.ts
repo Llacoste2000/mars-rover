@@ -20,6 +20,7 @@ export class Rover implements IRover {
 
     return this;
   }
+
   turnLeft(): this {
     const leftOrientation = this.orientation.left()
 
@@ -27,65 +28,37 @@ export class Rover implements IRover {
 
     return this;
   }
-  forward() {
-    switch (this.orientation.letter) {
+
+  move(orientation: Orientation, isForward: boolean): this {
+    const newPosition = { ...this.position };
+
+    switch (orientation.letter) {
       case EOrientation.N:
-        this.position = this.planet.normalize({
-          x: this.position.x,
-          y: this.position.y + 1,
-        });
+        newPosition.y += isForward ? 1 : -1;
         break;
       case EOrientation.E:
-        this.position = this.planet.normalize({
-          x: this.position.x + 1,
-          y: this.position.y,
-        });
+        newPosition.x += isForward ? 1 : - 1;
         break;
       case EOrientation.S:
-        this.position = this.planet.normalize({
-          x: this.position.x + this.planet.size.x,
-          y: this.position.y - 1,
-        });
+        newPosition.y += isForward ? - 1 : 1;
         break;
       case EOrientation.W:
-        this.position = this.planet.normalize({
-          x: this.position.x - 1 + this.planet.size.x,
-          y: this.position.y,
-        });
+        newPosition.x += isForward ? - 1 : 1;
         break;
     }
 
+    this.position = this.planet.normalize(newPosition)
+
     return this;
+
   }
-  backward() {
-    switch (this.orientation.letter) {
-      case EOrientation.N:
-        this.position = this.planet.normalize({
-          x: this.position.x,
-          y: this.position.y - 1 + this.planet.size.y,
-        });
-        break;
-      case EOrientation.E:
-        this.position = this.planet.normalize({
-          x: this.position.x - 1 + this.planet.size.x,
-          y: this.position.y,
-        });
-        break;
-      case EOrientation.S:
-        this.position = this.planet.normalize({
-          x: this.position.x,
-          y: this.position.y + 1,
-        });
-        break;
-      case EOrientation.W:
-        this.position = this.planet.normalize({
-          x: this.position.x + 1,
-          y: this.position.y,
-        });
-        break;
-    }
 
-    return this;
+  forward() {
+    return this.move(this.orientation, true);
+  }
+
+  backward() {
+    return this.move(this.orientation, false);
   }
 
   printPosition() {

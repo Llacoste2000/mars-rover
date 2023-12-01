@@ -5,9 +5,16 @@ export class PlanetToroidal implements IPlanet {
   public size: Position;
 
   constructor(size: Position) {
+    if (size.x < 0 || size.y < 0) {
+      throw new Error("Size must be positive");
+    }
+
     this.size = size;
   }
   public normalize(position: Position) {
-    return { x: position.x % this.size.x, y: position.y % this.size.y };
+    const converterX = position.x < 0 ? position.x + this.size.x : position.x
+    const converterY = position.y < 0 ? position.y + this.size.y : position.y
+
+    return { x: converterX % this.size.x, y: converterY % this.size.y };
   }
 }

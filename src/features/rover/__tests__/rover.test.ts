@@ -1,11 +1,13 @@
 import { EOrientation, Orientation } from "../../orientation/Orientation";
+import { InfinitePlanet } from "../../planet/PlanetInfinite";
 import { PlanetToroidal } from "../../planet/PlanetToroidal";
 import { RoverBuilder } from "../RoverBuilder";
 
-const map = new PlanetToroidal({ x: 5, y: 5 });
-const rover = new RoverBuilder().onPlanet(map).build();
 
-describe("Rover", () => {
+describe("Rover on a toroidal planet", () => {
+  const map = new PlanetToroidal({ x: 5, y: 5 });
+  const rover = new RoverBuilder().onPlanet(map).build();
+
   beforeEach(() => {
     rover.position = { x: 0, y: 0 };
     rover.orientation = new Orientation(EOrientation.N);
@@ -67,3 +69,23 @@ describe("Rover", () => {
     expect(rover.position).toEqual({ x: 0, y: 0 });
   });
 });
+
+
+describe("Rover on a infinite planet", () => {
+  const map = new InfinitePlanet({ x: 0, y: 0 });
+
+  it("go forward", () => {
+    const rover = new RoverBuilder().onPlanet(map).build();
+
+    expect(rover.position).toEqual({ x: 0, y: 0 });
+    rover.forward().forward().forward().forward();
+    expect(rover.position).toEqual({ x: 0, y: 4 });
+  })
+  it("go backward", () => {
+    const rover = new RoverBuilder().onPlanet(map).build();
+
+    expect(rover.position).toEqual({ x: 0, y: 0 });
+    rover.backward().backward().backward().backward();
+    expect(rover.position).toEqual({ x: 0, y: -4 });
+  })
+})
