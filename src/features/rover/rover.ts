@@ -6,7 +6,7 @@ import { EOrientation, Orientation } from "../orientation/Orientation.ts";
 import { IPlanet } from "../planet/Planet.interface.ts";
 
 export class Rover implements IRover {
-  constructor(public position: Position, public orientation: Orientation, private planet: IPlanet) {
+  constructor(public position: Position, public orientation: Orientation, private _planet: IPlanet) {
   }
 
   private setOrientation(orientation: Orientation) {
@@ -15,7 +15,6 @@ export class Rover implements IRover {
 
   turnRight() {
     const rightOrientation = this.orientation.right()
-
     this.setOrientation(rightOrientation);
 
     return this;
@@ -23,13 +22,12 @@ export class Rover implements IRover {
 
   turnLeft(): this {
     const leftOrientation = this.orientation.left()
-
     this.setOrientation(leftOrientation);
 
     return this;
   }
 
-  move(orientation: Orientation, isForward: boolean): this {
+  private move(orientation: Orientation, isForward: boolean): this {
     const newPosition = { ...this.position };
 
     switch (orientation.letter) {
@@ -47,7 +45,7 @@ export class Rover implements IRover {
         break;
     }
 
-    this.position = this.planet.normalize(newPosition)
+    this.position = this._planet.normalize(newPosition)
 
     return this;
 

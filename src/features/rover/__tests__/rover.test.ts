@@ -13,6 +13,43 @@ describe("Rover on a toroidal planet", () => {
     rover.orientation = new Orientation(EOrientation.N);
   });
 
+  it("should spawn on 0,0", () => {
+    const position = { x: 0, y: 0 };
+    const rover = new RoverBuilder().onPlanet(map).withPosition(position).build();
+
+    expect(rover.position).toEqual(position);
+  })
+
+  it("should move 1 y forward", () => {
+    const position = { x: 0, y: 0 };
+    const rover = new RoverBuilder().onPlanet(map).withPosition(position).build();
+
+    rover.forward();
+    expect(rover.position).toEqual({ ...position, y: position.y + 1 });
+  })
+  it("should move 1 y backward", () => {
+    const position = { x: 0, y: 0 };
+    const rover = new RoverBuilder().onPlanet(map).withPosition(position).build();
+
+    rover.backward();
+    expect(rover.position).toEqual({ ...position, y: map.size.y - 1 });
+  })
+
+  it("should move 1 x forward", () => {
+    const position = { x: 0, y: 0 };
+    const rover = new RoverBuilder().onPlanet(map).withPosition(position).oriented(new Orientation(EOrientation.E)).build();
+
+    rover.forward();
+    expect(rover.position).toEqual({ ...position, x: position.x + 1 });
+  })
+  it("should move 1 x backward", () => {
+    const position = { x: 0, y: 0 };
+    const rover = new RoverBuilder().onPlanet(map).withPosition(position).oriented(new Orientation(EOrientation.E)).build();
+
+    rover.backward();
+    expect(rover.position).toEqual({ ...position, x: map.size.x - 1 });
+  })
+
   it("turnRight", () => {
     expect(rover.orientation.letter).toBe("N");
     rover.turnRight();
@@ -72,7 +109,7 @@ describe("Rover on a toroidal planet", () => {
 
 
 describe("Rover on a infinite planet", () => {
-  const map = new InfinitePlanet({ x: 0, y: 0 });
+  const map = new InfinitePlanet();
 
   it("go forward", () => {
     const rover = new RoverBuilder().onPlanet(map).build();
