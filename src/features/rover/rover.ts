@@ -10,11 +10,11 @@ import { Planet } from "../planet/planet.ts";
 export class Rover implements IRover {
   orientation: Orientation = EOrientation.N;
   position: Position = { x: 0, y: 0 };
-  map: Planet;
+  planet: Planet;
 
-  constructor(x: number, y: number, map: Planet) {
+  constructor(x: number, y: number, planet: Planet) {
     this.position = { x, y };
-    this.map = map;
+    this.planet = planet;
   }
 
   private getIndexOfCurrentOrientation() {
@@ -45,18 +45,18 @@ export class Rover implements IRover {
   forward() {
     switch (this.orientation) {
       case EOrientation.N:
-        this.position.y = (this.position.y + 1) % this.map.getMaxY();
+        this.position.y = (this.position.y + 1) % this.planet.getMaxY();
         break;
       case EOrientation.E:
-        this.position.x = (this.position.x + 1) % this.map.getMaxX();
+        this.position.x = (this.position.x + 1) % this.planet.getMaxX();
         break;
       case EOrientation.S:
         this.position.y =
-          (this.position.y - 1 + this.map.getMaxY()) % this.map.getMaxY();
+          (this.position.y - 1 + this.planet.getMaxY()) % this.planet.getMaxY();
         break;
       case EOrientation.W:
         this.position.x =
-          (this.position.x - 1 + this.map.getMaxX()) % this.map.getMaxX();
+          (this.position.x - 1 + this.planet.getMaxX()) % this.planet.getMaxX();
         break;
     }
   }
@@ -64,17 +64,17 @@ export class Rover implements IRover {
     switch (this.orientation) {
       case EOrientation.N:
         this.position.y =
-          (this.position.y - 1 + this.map.getMaxY()) % this.map.getMaxY();
+          (this.position.y - 1 + this.planet.getMaxY()) % this.planet.getMaxY();
         break;
       case EOrientation.E:
         this.position.x =
-          (this.position.x - 1 + this.map.getMaxX()) % this.map.getMaxX();
+          (this.position.x - 1 + this.planet.getMaxX()) % this.planet.getMaxX();
         break;
       case EOrientation.S:
-        this.position.y = (this.position.y + 1) % this.map.getMaxY();
+        this.position.y = (this.position.y + 1) % this.planet.getMaxY();
         break;
       case EOrientation.W:
-        this.position.x = (this.position.x + 1) % this.map.getMaxX();
+        this.position.x = (this.position.x + 1) % this.planet.getMaxX();
         break;
     }
   }
