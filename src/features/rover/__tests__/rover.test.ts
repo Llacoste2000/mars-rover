@@ -135,6 +135,13 @@ describe('Rover on a infinite planet with obstacle', () => {
 
   const planet = new PlanetInfiniteWithObstacle(obstacles);
 
+  it('should throw error if rover spawn on obstacle', () => {
+    const initialPosition = { x: 0, y: 1 };
+
+    const roverBuilder = new RoverBuilder().onPlanet(planet).withPosition(initialPosition);
+
+    expect(() => roverBuilder.build()).toThrowError();
+  })
 
   it('should not go forward', () => {
     const initialPosition = { x: 0, y: 0 };

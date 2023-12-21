@@ -7,6 +7,9 @@ import { IPlanet } from "../planet/Planet.interface.ts";
 
 export class Rover implements IRover {
   constructor(public position: Position, public orientation: Orientation, private _planet: IPlanet) {
+    if (this._planet.isObstacle(this.position)) {
+      throw new Error("The rover can't spawn on an obstacle");
+    }
   }
 
   private setOrientation(orientation: Orientation) {
