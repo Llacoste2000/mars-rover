@@ -45,7 +45,13 @@ export class Rover implements IRover {
         break;
     }
 
-    this.position = this._planet.normalize(newPosition)
+    const newPositionNormalized = this._planet.normalize(newPosition);
+
+    if (this._planet.isObstacle(newPositionNormalized)) {
+      return this;
+    }
+
+    this.position = newPositionNormalized
 
     return this;
 

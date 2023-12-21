@@ -17,4 +17,9 @@ export class PlanetToroidal implements IPlanet {
 
     return { x: converterX % this.size.x, y: converterY % this.size.y };
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public isObstacle(_position: Position): boolean {
+    return false;
+  }
 }
