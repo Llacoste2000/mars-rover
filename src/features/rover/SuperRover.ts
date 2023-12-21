@@ -1,13 +1,11 @@
-import { Position } from "./types";
-import { Orientation } from "../orientation/Orientation.ts";
-import { IPlanet } from "../planet/Planet.interface.ts";
 import { Rover } from "./rover.ts";
 
-export class SuperRover extends Rover {
+export class SuperRover {
+  private rover: Rover;
   private obstacleDetected: boolean = false;
 
-  constructor(position: Position, orientation: Orientation, planet: IPlanet) {
-    super(position, orientation, planet);
+  constructor(rover: Rover) {
+    this.rover = rover;
   }
 
   detectObstacle(): boolean {
@@ -19,7 +17,7 @@ export class SuperRover extends Rover {
     if (this.obstacleDetected) {
       return this;
     }
-    super.forward();
+    this.rover.forward();
     this.obstacleDetected = this.detectObstacle();
     return this;
   }
@@ -28,7 +26,7 @@ export class SuperRover extends Rover {
     if (this.obstacleDetected) {
       return this;
     }
-    super.backward();
+    this.rover.backward();
     this.obstacleDetected = this.detectObstacle();
     return this;
   }
@@ -37,7 +35,7 @@ export class SuperRover extends Rover {
     if (this.obstacleDetected) {
       return this;
     }
-    super.turnRight();
+    this.rover.turnRight();
     return this;
   }
 
@@ -45,16 +43,16 @@ export class SuperRover extends Rover {
     if (this.obstacleDetected) {
       return this;
     }
-    super.turnLeft();
+    this.rover.turnLeft();
     return this;
   }
 
   printPosition() {
     if (this.obstacleDetected) {
       console.log(`Obstacle detected!`);
-      super.printPosition();
+      this.rover.printPosition();
     } else {
-      super.printPosition();
+      this.rover.printPosition();
     }
   }
 
