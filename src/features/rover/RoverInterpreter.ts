@@ -13,7 +13,7 @@ export class RoverInterpreter {
   constructor(private rover: IRover) { }
 
 
-  execute(command: RoverInterpreterCommands) {
+  private execute(command: RoverInterpreterCommands) {
     switch (command) {
       case roverInterpreterCommands.F:
         this.rover.forward();
@@ -30,6 +30,10 @@ export class RoverInterpreter {
       default:
         break;
     }
+  }
+
+  public interpret(command: string) {
+    command.split("").forEach(c => this.execute(c as RoverInterpreterCommands));
   }
 
 }
