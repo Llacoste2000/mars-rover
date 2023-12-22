@@ -17,7 +17,7 @@ export class Orientation {
 
   constructor(private readonly _letter: OrientationLetter, public readonly vector: Position) { }
 
-  public right(): Orientation {
+  public clockwise(): Orientation {
     switch (this._letter) {
       case EOrientation.N:
         return Orientation.East;
@@ -30,7 +30,7 @@ export class Orientation {
     }
   }
 
-  public left(): Orientation {
+  public counterClockwise(): Orientation {
     switch (this._letter) {
       case EOrientation.N:
         return Orientation.West;

@@ -5,7 +5,6 @@ import { Orientation } from "../orientation/Orientation.ts";
 import { IPlanet } from "../planet/Planet.interface.ts";
 import { Position } from "../position/Position.ts";
 
-
 // Objet-valeur
 export class Rover implements IRover {
   constructor(public readonly position: Position, public readonly orientation: Orientation, private readonly _planet: IPlanet) {
@@ -15,19 +14,18 @@ export class Rover implements IRover {
   }
 
   turnRight() {
-    const rightOrientation = this.orientation.right()
+    const rightOrientation = this.orientation.clockwise()
 
     return new Rover(this.position, rightOrientation, this._planet);
   }
 
   turnLeft() {
-    const leftOrientation = this.orientation.left()
+    const leftOrientation = this.orientation.counterClockwise()
 
     return new Rover(this.position, leftOrientation, this._planet);
   }
 
   private move(isForward: boolean) {
-
     const newPosition = isForward ? this.position.add(this.orientation.vector) : this.position.subtract(this.orientation.vector);
 
     const newPositionNormalized = this._planet.normalize(newPosition);
@@ -47,7 +45,7 @@ export class Rover implements IRover {
     return this.move(false);
   }
 
-  printPosition() {
+  toString() {
     console.log(
       `Rover orienté ${this.orientation.toString()} à la position ${this.position.x},${this.position.y}`,
     );
