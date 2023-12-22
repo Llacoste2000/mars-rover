@@ -15,10 +15,10 @@ export class Orientation {
   static readonly South = new Orientation(EOrientation.S, new Position(0, -1));
   static readonly West = new Orientation(EOrientation.W, new Position(-1, 0));
 
-  constructor(private readonly letter: OrientationLetter, public readonly vector: Position) { }
+  constructor(private readonly _letter: OrientationLetter, public readonly vector: Position) { }
 
   public right(): Orientation {
-    switch (this.letter) {
+    switch (this._letter) {
       case EOrientation.N:
         return Orientation.East;
       case EOrientation.E:
@@ -31,7 +31,7 @@ export class Orientation {
   }
 
   public left(): Orientation {
-    switch (this.letter) {
+    switch (this._letter) {
       case EOrientation.N:
         return Orientation.West;
       case EOrientation.E:
@@ -44,6 +44,6 @@ export class Orientation {
   }
 
   public toString(): string {
-    return this.letter;
+    return this._letter;
   }
 }
