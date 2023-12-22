@@ -5,9 +5,9 @@ export interface IRover {
   orientation: Orientation;
   position: Position;
 
-  turnRight(): this;
-  turnLeft(): this;
-  forward(): this;
-  backward(): this;
+  turnRight(): IRover;
+  turnLeft(): IRover;
+  forward(): IRover;
+  backward(): IRover;
 }
 

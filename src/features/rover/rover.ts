@@ -8,31 +8,25 @@ import { Position } from "../position/Position.ts";
 
 // Objet-valeur
 export class Rover implements IRover {
-  constructor(public position: Position, public orientation: Orientation, private readonly _planet: IPlanet) {
+  constructor(public readonly position: Position, public readonly orientation: Orientation, private readonly _planet: IPlanet) {
     if (this._planet.isObstacle(this.position)) {
       throw new Error("The rover can't spawn on an obstacle");
     }
   }
 
-  private setOrientation(orientation: Orientation) {
-    this.orientation = orientation;
-  }
-
   turnRight() {
     const rightOrientation = this.orientation.right()
-    this.setOrientation(rightOrientation);
 
-    return this;
+    return new Rover(this.position, rightOrientation, this._planet);
   }
 
-  turnLeft(): this {
+  turnLeft() {
     const leftOrientation = this.orientation.left()
-    this.setOrientation(leftOrientation);
 
-    return this;
+    return new Rover(this.position, leftOrientation, this._planet);
   }
 
-  private move(orientation: Orientation, isForward: boolean): this {
+  private move(orientation: Orientation, isForward: boolean) {
     const newPosition = { ...this.position };
 
     switch (orientation.letter) {
@@ -56,9 +50,7 @@ export class Rover implements IRover {
       return this;
     }
 
-    this.position = newPositionNormalized
-
-    return this;
+    return new Rover(newPositionNormalized, orientation, this._planet);
 
   }
 
