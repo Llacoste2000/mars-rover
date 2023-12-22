@@ -4,7 +4,6 @@ import { PlanetInfiniteWithObstacle } from "../../planet/PlanetInfiniteWithObsta
 import { PlanetToroidal } from "../../planet/PlanetToroidal";
 import { RoverBuilder } from "../RoverBuilder";
 
-
 describe("Rover on a toroidal planet", () => {
   const map = new PlanetToroidal({ x: 5, y: 5 });
 
@@ -84,7 +83,6 @@ describe("Rover on a infinite planet", () => {
 })
 
 describe('Rover on a infinite planet with obstacle', () => {
-
   const obstacles = [
     { x: 0, y: 1 },
   ]

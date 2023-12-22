@@ -10,7 +10,7 @@ import { Position } from "../position/Position.ts";
 export class Rover implements IRover {
   constructor(public readonly position: Position, public readonly orientation: Orientation, private readonly _planet: IPlanet) {
     if (this._planet.isObstacle(this.position)) {
-      throw new Error("The rover can't spawn on an obstacle");
+      throw new Error("The rover can't be on an obstacle");
     }
   }
 
@@ -46,12 +46,11 @@ export class Rover implements IRover {
 
     const newPositionNormalized = this._planet.normalize(newPosition);
 
-    if (this._planet.isObstacle(newPositionNormalized)) {
+    try {
+      return new Rover(newPositionNormalized, orientation, this._planet);
+    } catch (error) {
       return this;
     }
-
-    return new Rover(newPositionNormalized, orientation, this._planet);
-
   }
 
   forward() {
