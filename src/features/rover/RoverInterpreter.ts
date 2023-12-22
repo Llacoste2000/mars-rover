@@ -13,7 +13,6 @@ export type RoverInterpreterCommands = typeof roverInterpreterCommands[keyof typ
 export class RoverInterpreter {
   constructor(private rover: IRover) { }
 
-
   private execute(command: RoverInterpreterCommands) {
     switch (command) {
       case roverInterpreterCommands.F:
