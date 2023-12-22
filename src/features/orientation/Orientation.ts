@@ -6,13 +6,13 @@ export const EOrientation = {
 } as const;
 export type OrientationLetter = (typeof EOrientation)[keyof typeof EOrientation];
 
+// Objet-valeur
 export class Orientation {
   public readonly letter: OrientationLetter;
 
   constructor(orientation: OrientationLetter) {
     this.letter = orientation;
   }
-
 
   public right(): Orientation {
     switch (this.letter) {

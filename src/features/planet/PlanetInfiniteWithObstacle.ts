@@ -1,6 +1,7 @@
 import { Position } from "../position/Position";
 import { PlanetInfinite } from "./PlanetInfinite";
 
+// Objet-valeur
 export class PlanetInfiniteWithObstacle extends PlanetInfinite {
   private obstacles: Position[] = [];
 

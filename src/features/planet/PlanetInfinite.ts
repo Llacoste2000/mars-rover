@@ -1,6 +1,7 @@
 import { Position } from "../position/Position";
 import { IPlanet } from "./Planet.interface";
 
+// Objet-valeur
 export class PlanetInfinite implements IPlanet {
   public normalize(position: Position) {
     return position;

@@ -4,6 +4,7 @@ import { PlanetToroidal } from "../planet/PlanetToroidal";
 import { Position } from "../position/Position";
 import { Rover } from "./rover";
 
+// Service
 export class RoverBuilder {
   private position: Position = { x: 0, y: 0 };
   private orientation: Orientation = new Orientation(EOrientation.N);

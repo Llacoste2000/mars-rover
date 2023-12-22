@@ -5,8 +5,10 @@ import { EOrientation, Orientation } from "../orientation/Orientation.ts";
 import { IPlanet } from "../planet/Planet.interface.ts";
 import { Position } from "../position/Position.ts";
 
+
+// Objet-valeur
 export class Rover implements IRover {
-  constructor(public position: Position, public orientation: Orientation, private _planet: IPlanet) {
+  constructor(public position: Position, public orientation: Orientation, private readonly _planet: IPlanet) {
     if (this._planet.isObstacle(this.position)) {
       throw new Error("The rover can't spawn on an obstacle");
     }
