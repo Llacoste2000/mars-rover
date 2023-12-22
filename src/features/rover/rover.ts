@@ -26,10 +26,10 @@ export class Rover implements IRover {
     return new Rover(this.position, leftOrientation, this._planet);
   }
 
-  private move(orientation: Orientation, isForward: boolean) {
+  private move(isForward: boolean) {
     const newPosition = { ...this.position };
 
-    switch (orientation.letter) {
+    switch (this.orientation.letter) {
       case EOrientation.N:
         newPosition.y += isForward ? 1 : -1;
         break;
@@ -47,18 +47,18 @@ export class Rover implements IRover {
     const newPositionNormalized = this._planet.normalize(newPosition);
 
     try {
-      return new Rover(newPositionNormalized, orientation, this._planet);
+      return new Rover(newPositionNormalized, this.orientation, this._planet);
     } catch (error) {
       return this;
     }
   }
 
   forward() {
-    return this.move(this.orientation, true);
+    return this.move(true);
   }
 
   backward() {
-    return this.move(this.orientation, false);
+    return this.move(false);
   }
 
   printPosition() {
