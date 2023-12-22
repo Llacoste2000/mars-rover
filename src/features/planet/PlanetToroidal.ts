@@ -16,7 +16,7 @@ export class PlanetToroidal implements IPlanet {
     const converterX = position.x < 0 ? position.x + this.size.x : position.x
     const converterY = position.y < 0 ? position.y + this.size.y : position.y
 
-    return { x: converterX % this.size.x, y: converterY % this.size.y };
+    return new Position(converterX % this.size.x, converterY % this.size.y);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

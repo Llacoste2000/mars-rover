@@ -10,6 +10,6 @@ export class PlanetWithObstacle implements IPlanet {
   }
 
   public isPositionAvailable(position: Position): boolean {
-    return !this.obstacles.some(obstacle => obstacle.x === position.x && obstacle.y === position.y);
+    return !this.obstacles.some(obstacle => obstacle.equals(position));
   }
 }

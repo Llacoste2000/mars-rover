@@ -1,42 +1,49 @@
-export const EOrientation = {
+import { Position } from "../position/Position";
+
+const EOrientation = {
   N: "N",
   S: "S",
   E: "E",
   W: "W",
 } as const;
-export type OrientationLetter = (typeof EOrientation)[keyof typeof EOrientation];
+type OrientationLetter = (typeof EOrientation)[keyof typeof EOrientation];
 
 // Objet-valeur
 export class Orientation {
-  public readonly letter: OrientationLetter;
+  static readonly North = new Orientation(EOrientation.N, new Position(0, 1));
+  static readonly East = new Orientation(EOrientation.E, new Position(1, 0));
+  static readonly South = new Orientation(EOrientation.S, new Position(0, -1));
+  static readonly West = new Orientation(EOrientation.W, new Position(-1, 0));
 
-  constructor(orientation: OrientationLetter) {
-    this.letter = orientation;
-  }
+  constructor(private readonly letter: OrientationLetter, public readonly vector: Position) { }
 
   public right(): Orientation {
     switch (this.letter) {
       case EOrientation.N:
-        return new Orientation(EOrientation.E);
+        return Orientation.East;
       case EOrientation.E:
-        return new Orientation(EOrientation.S);
+        return Orientation.South;
       case EOrientation.S:
-        return new Orientation(EOrientation.W);
+        return Orientation.West;
       case EOrientation.W:
-        return new Orientation(EOrientation.N);
+        return Orientation.North;
     }
   }
 
   public left(): Orientation {
     switch (this.letter) {
       case EOrientation.N:
-        return new Orientation(EOrientation.W);
+        return Orientation.West;
       case EOrientation.E:
-        return new Orientation(EOrientation.N);
+        return Orientation.North;
       case EOrientation.S:
-        return new Orientation(EOrientation.E);
+        return Orientation.East;
       case EOrientation.W:
-        return new Orientation(EOrientation.S);
+        return Orientation.South;
     }
+  }
+
+  public toString(): string {
+    return this.letter;
   }
 }

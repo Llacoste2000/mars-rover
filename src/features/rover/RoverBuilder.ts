@@ -1,4 +1,4 @@
-import { Orientation, EOrientation } from "../orientation/Orientation";
+import { Orientation } from "../orientation/Orientation";
 import { IPlanet } from "../planet/Planet.interface";
 import { PlanetToroidal } from "../planet/PlanetToroidal";
 import { Position } from "../position/Position";
@@ -6,9 +6,9 @@ import { Rover } from "./rover";
 
 // Service
 export class RoverBuilder {
-  private position: Position = { x: 0, y: 0 };
-  private orientation: Orientation = new Orientation(EOrientation.N);
-  private planet: IPlanet = new PlanetToroidal({ x: 5, y: 5 });
+  private position = new Position(0, 0);
+  private orientation = Orientation.North
+  private planet: IPlanet = new PlanetToroidal(new Position(5, 5));
 
   oriented(orientation: Orientation): this {
     this.orientation = orientation;
