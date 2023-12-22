@@ -1,4 +1,4 @@
-import { Position } from "../../rover/types";
+import { Position } from "../../position/Position";
 import { PlanetInfiniteWithObstacle } from "../PlanetInfiniteWithObstacle";
 
 describe('Infinite planet with obstacle', () => {

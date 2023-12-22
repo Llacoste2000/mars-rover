@@ -1,4 +1,4 @@
-import { Position } from "../rover/types";
+import { Position } from "../position/Position";
 import { PlanetInfinite } from "./PlanetInfinite";
 
 export class PlanetInfiniteWithObstacle extends PlanetInfinite {

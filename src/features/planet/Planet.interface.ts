@@ -1,4 +1,4 @@
-import { Position } from "../rover/types";
+import { Position } from "../position/Position"
 
 export interface IPlanet {
   normalize: (position: Position) => Position

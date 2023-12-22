@@ -1,9 +1,9 @@
 import {
   IRover,
-  Position,
-} from "./types";
+} from "./Rover.interface.ts";
 import { EOrientation, Orientation } from "../orientation/Orientation.ts";
 import { IPlanet } from "../planet/Planet.interface.ts";
+import { Position } from "../position/Position.ts";
 
 export class Rover implements IRover {
   constructor(public position: Position, public orientation: Orientation, private _planet: IPlanet) {

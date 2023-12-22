@@ -1,4 +1,5 @@
 import { Orientation } from "../orientation/Orientation";
+import { Position } from "../position/Position";
 
 export interface IRover {
   orientation: Orientation;
@@ -10,7 +11,3 @@ export interface IRover {
   backward(): this;
 }
 
-export interface Position {
-  x: number;
-  y: number;
-}

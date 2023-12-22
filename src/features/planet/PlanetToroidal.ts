@@ -1,4 +1,4 @@
-import { Position } from "../rover/types";
+import { Position } from "../position/Position";
 import { IPlanet } from "./Planet.interface";
 
 export class PlanetToroidal implements IPlanet {
