@@ -8,7 +8,7 @@ export class PlanetInfinite implements IPlanet {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  public isObstacle(_position: Position): boolean {
-    return false;
+  public isPositionAvailable(_position: Position): boolean {
+    return true;
   }
 }

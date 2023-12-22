@@ -1,6 +1,6 @@
 import { EOrientation, Orientation } from "../../orientation/Orientation";
 import { PlanetInfinite } from "../../planet/PlanetInfinite";
-import { PlanetInfiniteWithObstacle } from "../../planet/PlanetInfiniteWithObstacle";
+import { PlanetWithObstacle } from "../../planet/PlanetWithObstacle";
 import { PlanetToroidal } from "../../planet/PlanetToroidal";
 import { RoverBuilder } from "../RoverBuilder";
 
@@ -87,19 +87,20 @@ describe('Rover on a infinite planet with obstacle', () => {
     { x: 0, y: 1 },
   ]
 
-  const planet = new PlanetInfiniteWithObstacle(obstacles);
+  const planet = new PlanetInfinite();
+  const planetWithObstacle = new PlanetWithObstacle(planet, obstacles);
 
   it('should throw error if rover spawn on obstacle', () => {
     const initialPosition = { x: 0, y: 1 };
 
-    const roverBuilder = new RoverBuilder().onPlanet(planet).withPosition(initialPosition);
+    const roverBuilder = new RoverBuilder().onPlanet(planetWithObstacle).withPosition(initialPosition);
 
     expect(() => roverBuilder.build()).toThrowError();
   })
 
   it('should not go forward', () => {
     const initialPosition = { x: 0, y: 0 };
-    const rover = new RoverBuilder().onPlanet(planet).withPosition(initialPosition).build();
+    const rover = new RoverBuilder().onPlanet(planetWithObstacle).withPosition(initialPosition).build();
 
     const newRover = rover.forward();
 
@@ -107,7 +108,7 @@ describe('Rover on a infinite planet with obstacle', () => {
   })
   it('should not go backward', () => {
     const initialPosition = { x: 0, y: 2 };
-    const rover = new RoverBuilder().onPlanet(planet).withPosition(initialPosition).build();
+    const rover = new RoverBuilder().onPlanet(planetWithObstacle).withPosition(initialPosition).build();
 
     const newRover = rover.backward();
 
