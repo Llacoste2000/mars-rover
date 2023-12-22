@@ -1,6 +1,4 @@
-import {
-  IRover,
-} from "./Rover.interface.ts";
+import { IRover } from "./Rover.interface.ts";
 import { Orientation } from "../orientation/Orientation.ts";
 import { IPlanet } from "../planet/Planet.interface.ts";
 import { Position } from "../position/Position.ts";
@@ -25,9 +23,8 @@ export class Rover implements IRover {
     return new Rover(this.position, leftOrientation, this._planet);
   }
 
-  private move(isForward: boolean) {
-    const newPosition = isForward ? this.position.add(this.orientation.vector) : this.position.subtract(this.orientation.vector);
-
+  forward() {
+    const newPosition = this.position.add(this.orientation.vector);
     const newPositionNormalized = this._planet.normalize(newPosition);
 
     try {
@@ -37,12 +34,15 @@ export class Rover implements IRover {
     }
   }
 
-  forward() {
-    return this.move(true);
-  }
-
   backward() {
-    return this.move(false);
+    const newPosition = this.position.subtract(this.orientation.vector);
+    const newPositionNormalized = this._planet.normalize(newPosition);
+
+    try {
+      return new Rover(newPositionNormalized, this.orientation, this._planet);
+    } catch (error) {
+      return this;
+    }
   }
 
   toString() {
