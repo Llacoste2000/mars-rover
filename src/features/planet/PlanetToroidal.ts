@@ -1,3 +1,4 @@
+import { Integer } from "../integer/Integer";
 import { Position } from "../position/Position";
 import { IPlanet } from "./Planet.interface";
 
@@ -5,7 +6,7 @@ import { IPlanet } from "./Planet.interface";
 export class PlanetToroidal implements IPlanet {
 
   constructor(public size: Position) {
-    if (size.x < 0 || size.y < 0) {
+    if (size.x.lessThan(Integer.zero) || size.y.lessThan(Integer.zero)) {
       throw new Error("Size must be positive");
     }
 
@@ -13,10 +14,10 @@ export class PlanetToroidal implements IPlanet {
   }
 
   public normalize(position: Position) {
-    const converterX = position.x < 0 ? position.x + this.size.x : position.x
-    const converterY = position.y < 0 ? position.y + this.size.y : position.y
+    const converterX = position.x.lessThan(Integer.zero) ? position.x.add(this.size.x) : position.x
+    const converterY = position.y.lessThan(Integer.zero) ? position.y.add(this.size.y) : position.y
 
-    return new Position(converterX % this.size.x, converterY % this.size.y);
+    return new Position(converterX.modulo(this.size.x), converterY.modulo(this.size.y));
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
