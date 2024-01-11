@@ -11,7 +11,7 @@ export type RoverInterpreterCommands = typeof roverInterpreterCommands[keyof typ
 
 // Service
 export class RoverInterpreter {
-  constructor(private rover: IRover) { }
+  constructor(private readonly rover: IRover) { }
 
   private execute(command: RoverInterpreterCommands) {
     switch (command) {
@@ -31,12 +31,10 @@ export class RoverInterpreter {
   public interpret(command: string): IRover {
     const commands = command.split("");
 
-    commands.forEach(command => {
-      const newRover = new RoverInterpreter(this.rover).execute(command as RoverInterpreterCommands);
+    const rover = commands.reduce((rover, command) => {
+      return new RoverInterpreter(rover).execute(command as RoverInterpreterCommands);
+    }, this.rover);
 
-      this.rover = newRover;
-    });
-
-    return this.rover;
+    return rover;
   }
 }
