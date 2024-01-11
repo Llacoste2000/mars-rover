@@ -7,17 +7,19 @@ import { Rover } from "./rover";
 
 // Service
 export class RoverBuilder {
-  private position = new Position(Integer.zero, Integer.zero);
-  private orientation = Orientation.North
-  private planet: IPlanet = new PlanetToroidal(new Position(new Integer(5), new Integer(5)));
+  private roverConfig = {
+    position: new Position(0, 0),
+    orientation: Orientation.North,
+  }
+  private planet: IPlanet = new PlanetToroidal(new Position(5, 5));
 
   oriented(orientation: Orientation): this {
-    this.orientation = orientation;
+    this.roverConfig.orientation = orientation;
     return this;
   }
 
   withPosition(position: Position): this {
-    this.position = position;
+    this.roverConfig.position = position;
     return this;
   }
 
@@ -27,7 +29,6 @@ export class RoverBuilder {
   }
 
   build(): Rover {
-    return new Rover(this.position, this.orientation, this.planet);
+    return new Rover(this.roverConfig.position, this.roverConfig.orientation, this.planet);
   }
-
 }
