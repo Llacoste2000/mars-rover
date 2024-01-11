@@ -9,6 +9,7 @@ import { RoverBuilder } from "../RoverBuilder";
 describe("Rover on a toroidal planet", () => {
   const map = new PlanetToroidal(new Position(new Integer(5), new Integer(5)));
 
+
   it("should spawn on 0,0", () => {
     const position = new Position(Integer.zero, Integer.zero);
     const rover = new RoverBuilder().onPlanet(map).withPosition(position).build();
