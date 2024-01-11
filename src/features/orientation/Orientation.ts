@@ -19,29 +19,19 @@ export class Orientation {
   constructor(private readonly _letter: OrientationLetter, public readonly vector: Position) { }
 
   public clockwise(): Orientation {
-    switch (this._letter) {
-      case EOrientation.N:
-        return Orientation.East;
-      case EOrientation.E:
-        return Orientation.South;
-      case EOrientation.S:
-        return Orientation.West;
-      case EOrientation.W:
-        return Orientation.North;
-    }
+    if (this._letter === EOrientation.N) return Orientation.East;
+    if (this._letter === EOrientation.E) return Orientation.South;
+    if (this._letter === EOrientation.S) return Orientation.West;
+    if (this._letter === EOrientation.W) return Orientation.North;
+    return this;
   }
 
   public counterClockwise(): Orientation {
-    switch (this._letter) {
-      case EOrientation.N:
-        return Orientation.West;
-      case EOrientation.E:
-        return Orientation.North;
-      case EOrientation.S:
-        return Orientation.East;
-      case EOrientation.W:
-        return Orientation.South;
-    }
+    if (this._letter === EOrientation.N) return Orientation.West;
+    if (this._letter === EOrientation.E) return Orientation.North;
+    if (this._letter === EOrientation.S) return Orientation.East;
+    if (this._letter === EOrientation.W) return Orientation.South;
+    return this;
   }
 
   public toString(): string {

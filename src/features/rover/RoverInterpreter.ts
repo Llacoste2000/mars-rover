@@ -14,18 +14,11 @@ export class RoverInterpreter {
   constructor(private readonly rover: IRover) { }
 
   private execute(command: RoverInterpreterCommands) {
-    switch (command) {
-      case roverInterpreterCommands.F:
-        return this.rover.forward();
-      case roverInterpreterCommands.B:
-        return this.rover.backward();
-      case roverInterpreterCommands.L:
-        return this.rover.turnLeft();
-      case roverInterpreterCommands.R:
-        return this.rover.turnRight();
-      default:
-        return this.rover;
-    }
+    if(command === roverInterpreterCommands.F) return this.rover.forward();
+    if (command === roverInterpreterCommands.B) return this.rover.backward();
+    if (command === roverInterpreterCommands.L) return this.rover.turnLeft();
+    if (command === roverInterpreterCommands.R) return this.rover.turnRight();
+    return this.rover;
   }
 
   public interpret(command: string): IRover {
