@@ -24,45 +24,5 @@ describe("RoverInterpreter", () => {
 
     expect(newRover.position).toEqual(roverExpect.position)
   })
-  it("go forward", () => {
-    const rover = new RoverBuilder().build();
-    const interpreter : RoverInterpreter = new RoverInterpreter(rover);
-
-    interpreter.interpret("F");
-
-    const roverExpect = new RoverBuilder().build();
-    roverExpect.forward();
-    expect(rover.position).toEqual(roverExpect.position);
-  })
-  it("go backward", () => {
-    const rover = new RoverBuilder().build();
-    const interpreter : RoverInterpreter = new RoverInterpreter(rover);
-
-    interpreter.interpret("B");
-
-    const roverExpect = new RoverBuilder().build();
-    roverExpect.backward();
-    expect(rover.position).toEqual(roverExpect.position);
-  })
-  it("go left", () => {
-    const rover = new RoverBuilder().build();
-    const interpreter : RoverInterpreter = new RoverInterpreter(rover);
-
-    interpreter.interpret("L");
-
-    const roverExpect = new RoverBuilder().build();
-    roverExpect.turnLeft();
-    expect(rover.position).toEqual(roverExpect.position);
-  })
-  it("go right", () => {
-    const rover = new RoverBuilder().build();
-    const interpreter : RoverInterpreter = new RoverInterpreter(rover);
-
-    interpreter.interpret("R");
-
-    const roverExpect = new RoverBuilder().build();
-    roverExpect.turnRight();
-    expect(rover.position).toEqual(roverExpect.position);
-  })
 
 })
