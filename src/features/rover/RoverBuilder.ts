@@ -8,10 +8,10 @@ import { Rover } from "./rover";
 // Service
 export class RoverBuilder {
   private roverConfig = {
-    position: new Position(0, 0),
+    position: new Position(Integer.zero, Integer.zero),
     orientation: Orientation.North,
   }
-  private planet: IPlanet = new PlanetToroidal(new Position(5, 5));
+  private planet: IPlanet = new PlanetToroidal(new Position(new Integer(5), new Integer(5)));
 
   oriented(orientation: Orientation): this {
     this.roverConfig.orientation = orientation;
