@@ -1,15 +1,17 @@
+import { Integer } from "../integer/Integer";
+
 export class Position {
-  constructor(public readonly x: number, public readonly y: number) { }
+  constructor(public readonly x: Integer, public readonly y: Integer) { }
 
   public add(position: Position) {
-    return new Position(this.x + position.x, this.y + position.y);
+    return new Position(this.x.add(position.x), this.y.add(position.y));
   }
 
   public subtract(position: Position) {
-    return new Position(this.x - position.x, this.y - position.y);
+    return new Position(this.x.subtract(position.x), this.y.subtract(position.y));
   }
 
   public equals(position: Position) {
-    return this.x === position.x && this.y === position.y
+    return this.x.equals(position.x) && this.y.equals(position.y)
   }
 }

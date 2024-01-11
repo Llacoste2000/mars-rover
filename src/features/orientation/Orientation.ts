@@ -1,3 +1,4 @@
+import { Integer } from "../integer/Integer";
 import { Position } from "../position/Position";
 
 const EOrientation = {
@@ -10,10 +11,10 @@ type OrientationLetter = (typeof EOrientation)[keyof typeof EOrientation];
 
 // Objet-valeur
 export class Orientation {
-  static readonly North = new Orientation(EOrientation.N, new Position(0, 1));
-  static readonly East = new Orientation(EOrientation.E, new Position(1, 0));
-  static readonly South = new Orientation(EOrientation.S, new Position(0, -1));
-  static readonly West = new Orientation(EOrientation.W, new Position(-1, 0));
+  static readonly North = new Orientation(EOrientation.N, new Position(Integer.zero, Integer.one));
+  static readonly East = new Orientation(EOrientation.E, new Position(Integer.one, Integer.zero));
+  static readonly South = new Orientation(EOrientation.S, new Position(Integer.zero, Integer.minusOne));
+  static readonly West = new Orientation(EOrientation.W, new Position(Integer.minusOne, Integer.zero));
 
   constructor(private readonly _letter: OrientationLetter, public readonly vector: Position) { }
 
