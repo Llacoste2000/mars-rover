@@ -13,16 +13,16 @@ describe("RoverInterpreter", () => {
     ['LLF', (rover: IRover) => rover.turnLeft().turnLeft().forward()],
     ['R', (rover: IRover) => rover.turnRight()],
   ])("Should interpret the command '%s'", (command, action) => {
-    const rover = new RoverBuilder().build();
+    const initialRover = new RoverBuilder().build();
 
-    const interpreter = new RoverInterpreter(rover);
+    const interpreter = new RoverInterpreter(initialRover);
 
-    interpreter.interpret(command);
+    const newRover = interpreter.interpret(command);
 
-    const roverExpect = new RoverBuilder().build();
-    action(roverExpect);
+    const roverTets = new RoverBuilder().build();
+    const roverExpect = action(roverTets);
 
-    expect(rover.position).toEqual(roverExpect.position)
+    expect(newRover.position).toEqual(roverExpect.position)
   })
 
 })

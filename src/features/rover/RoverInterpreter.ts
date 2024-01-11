@@ -16,24 +16,27 @@ export class RoverInterpreter {
   private execute(command: RoverInterpreterCommands) {
     switch (command) {
       case roverInterpreterCommands.F:
-        this.rover.forward();
-        break;
+        return this.rover.forward();
       case roverInterpreterCommands.B:
-        this.rover.backward();
-        break;
+        return this.rover.backward();
       case roverInterpreterCommands.L:
-        this.rover.turnLeft();
-        break;
+        return this.rover.turnLeft();
       case roverInterpreterCommands.R:
-        this.rover.turnRight();
-        break;
+        return this.rover.turnRight();
       default:
-        break;
+        return this.rover;
     }
   }
 
-  public interpret(command: string) {
-    command.split("").forEach(c => this.execute(c as RoverInterpreterCommands));
-  }
+  public interpret(command: string): IRover {
+    const commands = command.split("");
 
+    commands.forEach(command => {
+      const newRover = new RoverInterpreter(this.rover).execute(command as RoverInterpreterCommands);
+
+      this.rover = newRover;
+    });
+
+    return this.rover;
+  }
 }
