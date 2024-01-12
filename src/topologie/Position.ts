@@ -14,4 +14,8 @@ export class Position {
   public equals(position: Position) {
     return this.x.equals(position.x) && this.y.equals(position.y)
   }
+
+  public toString() {
+    return `(${this.x.toString()}, ${this.y.toString()})`
+  }
 }

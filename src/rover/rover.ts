@@ -46,8 +46,6 @@ export class Rover implements IRover {
   }
 
   toString() {
-    console.log(
-      `Rover orienté ${this.orientation.toString()} à la position ${this.position.x},${this.position.y}`,
-    );
+    return `Rover orienté ${this.orientation.toString()} à la position ${this.position.toString()}`
   }
 }

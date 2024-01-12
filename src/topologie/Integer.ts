@@ -36,5 +36,9 @@ export class Integer {
     return this._value === other._value
   }
 
+  public toString(): string {
+    return `${this._value}`
+  }
+
 
 }
