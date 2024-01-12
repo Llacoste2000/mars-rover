@@ -1,7 +1,7 @@
 import { IRover } from "./Rover.interface.ts";
-import { Orientation } from "../orientation/Orientation.ts";
-import { IPlanet } from "../planet/Planet.interface.ts";
-import { Position } from "../position/Position.ts";
+import { Orientation } from "../topologie/Orientation.ts";
+import { IPlanet } from "../topologie/Planet.interface.ts";
+import { Position } from "../topologie/Position.ts";
 
 // Objet-valeur
 export class Rover implements IRover {

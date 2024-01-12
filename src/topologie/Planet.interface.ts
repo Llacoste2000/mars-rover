@@ -1,4 +1,4 @@
-import { Position } from "../position/Position"
+import { Position } from "./Position"
 
 export interface IPlanet {
   normalize: (position: Position) => Position

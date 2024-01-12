@@ -1,5 +1,5 @@
-import { Orientation } from "../orientation/Orientation";
-import { Position } from "../position/Position";
+import { Orientation } from "../topologie/Orientation";
+import { Position } from "../topologie/Position";
 
 export interface IRover {
   orientation: Orientation;

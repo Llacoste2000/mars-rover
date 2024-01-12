@@ -1,5 +1,5 @@
-import { Integer } from "../integer/Integer";
-import { Position } from "../position/Position";
+import { Integer } from "./Integer";
+import { Position } from "./Position";
 
 const EOrientation = {
   N: "N",

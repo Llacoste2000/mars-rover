@@ -1,6 +1,6 @@
-import { RoverBuilder } from "../RoverBuilder"
-import { RoverInterpreter } from "../RoverInterpreter";
-import { IRover } from "../Rover.interface";
+import { RoverBuilder } from "../rover/RoverBuilder"
+import { RoverInterpreter } from "../roverInterpreter/RoverInterpreter";
+import { IRover } from "../rover/Rover.interface";
 
 describe("RoverInterpreter", () => {
 

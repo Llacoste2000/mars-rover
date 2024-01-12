@@ -1,4 +1,4 @@
-import { Integer } from "../integer/Integer";
+import { Integer } from "./Integer";
 
 export class Position {
   constructor(public readonly x: Integer, public readonly y: Integer) { }

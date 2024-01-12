@@ -1,10 +1,10 @@
-import { Integer } from "../../integer/Integer";
-import { Orientation } from "../../orientation/Orientation";
-import { PlanetInfinite } from "../../planet/PlanetInfinite";
-import { PlanetToroidal } from "../../planet/PlanetToroidal";
-import { PlanetWithObstacle } from "../../planet/PlanetWithObstacle";
-import { Position } from "../../position/Position";
-import { RoverBuilder } from "../RoverBuilder";
+import { Integer } from "../topologie/Integer";
+import { Orientation } from "../topologie/Orientation";
+import { PlanetInfinite } from "../topologie/PlanetInfinite";
+import { PlanetToroidal } from "../topologie/PlanetToroidal";
+import { PlanetWithObstacle } from "../topologie/PlanetWithObstacle";
+import { Position } from "../topologie/Position";
+import { RoverBuilder } from "../rover/RoverBuilder";
 
 describe("Rover on a toroidal planet", () => {
   const map = new PlanetToroidal(new Position(new Integer(5), new Integer(5)));

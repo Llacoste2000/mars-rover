@@ -1,4 +1,4 @@
-import { Position } from "../position/Position";
+import { Position } from "./Position";
 import { IPlanet } from "./Planet.interface";
 
 // Objet-valeur
