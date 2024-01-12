@@ -1,24 +1,12 @@
 import { WebSocket } from "ws";
 import { RoverBuilder } from "./rover/RoverBuilder";
+import { RoverInterpreter } from "./roverInterpreter/RoverInterpreter";
+import { IRover } from "./rover/Rover.interface";
+import { WebsocketProtocolCommunication } from "./protocolCommunication/WebsocketProtocolCommunication";
+import { RemoteRover } from "./protocolCommunication/remoteRover";
 
-const rover = new RoverBuilder().build();
+const rover: IRover = new RoverBuilder().build();
 
 console.log(rover.toString());
 
-const socket = new WebSocket("ws://localhost:3000");
-
-socket.on("open", () => {
-  console.log("connected");
-
-  socket.emit("message", rover.toString());
-
-  socket.send("Hello");
-});
-
-socket.on("error", (error) => {
-  console.log(error);
-});
-
-socket.on("message", (message) => {
-  console.log(`Received: ${message}`);
-});
+const remoteRover = new RemoteRover(rover);

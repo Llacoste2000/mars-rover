@@ -4,17 +4,18 @@ export const roverInterpreterCommands = {
   F: "F",
   B: "B",
   L: "L",
-  R: "R"
+  R: "R",
 } as const;
 
-export type RoverInterpreterCommands = typeof roverInterpreterCommands[keyof typeof roverInterpreterCommands];
+export type RoverInterpreterCommands =
+  (typeof roverInterpreterCommands)[keyof typeof roverInterpreterCommands];
 
 // Service
 export class RoverInterpreter {
-  constructor(private readonly rover: IRover) { }
+  constructor(private readonly rover: IRover) {}
 
   private execute(command: RoverInterpreterCommands) {
-    if(command === roverInterpreterCommands.F) return this.rover.forward();
+    if (command === roverInterpreterCommands.F) return this.rover.forward();
     if (command === roverInterpreterCommands.B) return this.rover.backward();
     if (command === roverInterpreterCommands.L) return this.rover.turnLeft();
     if (command === roverInterpreterCommands.R) return this.rover.turnRight();
@@ -25,7 +26,9 @@ export class RoverInterpreter {
     const commands = command.split("");
 
     const rover = commands.reduce((rover, command) => {
-      return new RoverInterpreter(rover).execute(command as RoverInterpreterCommands);
+      return new RoverInterpreter(rover).execute(
+        command as RoverInterpreterCommands,
+      );
     }, this.rover);
 
     return rover;

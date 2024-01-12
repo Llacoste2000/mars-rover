@@ -1,26 +1,10 @@
-const server = Bun.serve({
-  fetch(req, server) {
-    const success = server.upgrade(req);
-    if (success) {
-      // Bun automatically returns a 101 Switching Protocols
-      // if the upgrade succeeds
-      return undefined;
-    }
+import { MissionControl } from "./missionControl/MissionControl";
+import { WebsocketProtocolCommunication } from "./protocolCommunication/WebsocketProtocolCommunication";
+import { UserInputThread } from "./userInputThread/userInputThread";
 
-    // handle HTTP request normally
-    return new Response("Hello world!");
-  },
-  websocket: {
-    open(ws) {
-      console.log("Client connected");
-    },
-    async message(ws, message) {
-      console.log(`Received ${message}`);
-      // send back a message
-      ws.send(`You said: ${message}`);
-    },
-  },
-  port: 3000,
+const websocketProtocolCommunication = new WebsocketProtocolCommunication();
+const missionControl = new MissionControl(websocketProtocolCommunication);
+
+new UserInputThread((message) => {
+  missionControl.send(message);
 });
-
-console.log(`Listening on ${server.hostname}:${server.port}`);
