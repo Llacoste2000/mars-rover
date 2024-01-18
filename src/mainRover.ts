@@ -1,12 +1,18 @@
-import { WebSocket } from "ws";
-import { RoverBuilder } from "./rover/RoverBuilder";
-import { RoverInterpreter } from "./roverInterpreter/RoverInterpreter";
+import { WebsocketProtocolCommunicationServer } from "./protocolCommunication/WebSocketProtocolCommunicationServer";
+import { RemoteRover } from "./protocolCommunication/RemoteRover";
 import { IRover } from "./rover/Rover.interface";
-import { WebsocketProtocolCommunication } from "./protocolCommunication/WebsocketProtocolCommunication";
-import { RemoteRover } from "./protocolCommunication/remoteRover";
+import { RoverBuilder } from "./rover/RoverBuilder";
+import { PlanetToroidal } from "./topologie/PlanetToroidal";
+import { Position } from "./topologie/Position";
+import { Integer } from "./topologie/Integer";
+import { PlanetWithObstacle } from "./topologie/PlanetWithObstacle";
 
-const rover: IRover = new RoverBuilder().build();
+const protocolCommunicationServer = new WebsocketProtocolCommunicationServer(3000);
 
-console.log(rover.toString());
+const planet = new PlanetWithObstacle(new PlanetToroidal(new Position(new Integer(5), new Integer(5))), [
+  new Position(new Integer(2), new Integer(2)),
+]);
 
-const remoteRover = new RemoteRover(rover);
+const rover: IRover = new RoverBuilder().onPlanet(planet).build();
+
+const remoteRover = new RemoteRover(rover, protocolCommunicationServer);

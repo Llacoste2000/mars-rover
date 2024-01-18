@@ -7,8 +7,7 @@ export const roverInterpreterCommands = {
   R: "R",
 } as const;
 
-export type RoverInterpreterCommands =
-  (typeof roverInterpreterCommands)[keyof typeof roverInterpreterCommands];
+export type RoverInterpreterCommands = (typeof roverInterpreterCommands)[keyof typeof roverInterpreterCommands];
 
 // Service
 export class RoverInterpreter {
@@ -22,15 +21,20 @@ export class RoverInterpreter {
     return this.rover;
   }
 
-  public interpret(command: string): IRover {
-    const commands = command.split("");
+  public interpret(command: string): [IRover, Error | null] {
+    const commands = command.split("") as RoverInterpreterCommands[];
 
-    const rover = commands.reduce((rover, command) => {
-      return new RoverInterpreter(rover).execute(
-        command as RoverInterpreterCommands,
-      );
-    }, this.rover);
+    let newRover: IRover = this.rover;
+    let error: Error | null = null;
 
-    return rover;
+    try {
+      commands.forEach((command) => {
+        newRover = new RoverInterpreter(newRover).execute(command);
+      });
+    } catch (e) {
+      error = e as Error;
+    }
+
+    return [newRover, error];
   }
 }
