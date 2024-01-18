@@ -1,6 +1,6 @@
-import { Position } from "./Position"
+import { Position } from "./Position";
 
 export interface IPlanet {
-  normalize: (position: Position) => Position
-  isPositionAvailable: (position: Position) => boolean
+  normalize: (position: Position) => Position;
+  isPositionAvailable: (position: Position) => boolean;
 }

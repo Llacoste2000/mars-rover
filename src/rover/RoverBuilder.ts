@@ -3,14 +3,14 @@ import { Orientation } from "../topologie/Orientation";
 import { IPlanet } from "../topologie/Planet.interface";
 import { PlanetToroidal } from "../topologie/PlanetToroidal";
 import { Position } from "../topologie/Position";
-import { Rover } from "./rover";
+import { Rover } from "./Rover";
 
 // Service
 export class RoverBuilder {
   private roverConfig = {
     position: new Position(Integer.zero, Integer.zero),
     orientation: Orientation.North,
-  }
+  };
   private planet: IPlanet = new PlanetToroidal(new Position(new Integer(5), new Integer(5)));
 
   oriented(orientation: Orientation): this {

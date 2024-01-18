@@ -16,7 +16,10 @@ export class Orientation {
   static readonly South = new Orientation(EOrientation.S, new Position(Integer.zero, Integer.minusOne));
   static readonly West = new Orientation(EOrientation.W, new Position(Integer.minusOne, Integer.zero));
 
-  constructor(private readonly _letter: OrientationLetter, public readonly vector: Position) { }
+  constructor(
+    private readonly _letter: OrientationLetter,
+    public readonly vector: Position,
+  ) {}
 
   public clockwise(): Orientation {
     if (this._letter === EOrientation.N) return Orientation.East;

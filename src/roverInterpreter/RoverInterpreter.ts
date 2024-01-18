@@ -7,8 +7,7 @@ export const roverInterpreterCommands = {
   R: "R",
 } as const;
 
-export type RoverInterpreterCommands =
-  (typeof roverInterpreterCommands)[keyof typeof roverInterpreterCommands];
+export type RoverInterpreterCommands = (typeof roverInterpreterCommands)[keyof typeof roverInterpreterCommands];
 
 // Service
 export class RoverInterpreter {
@@ -26,9 +25,7 @@ export class RoverInterpreter {
     const commands = command.split("");
 
     const rover = commands.reduce((rover, command) => {
-      return new RoverInterpreter(rover).execute(
-        command as RoverInterpreterCommands,
-      );
+      return new RoverInterpreter(rover).execute(command as RoverInterpreterCommands);
     }, this.rover);
 
     return rover;

@@ -5,20 +5,24 @@ import { Position } from "../topologie/Position.ts";
 
 // Objet-valeur
 export class Rover implements IRover {
-  constructor(public readonly position: Position, public readonly orientation: Orientation, private readonly _planet: IPlanet) {
+  constructor(
+    public readonly position: Position,
+    public readonly orientation: Orientation,
+    private readonly _planet: IPlanet,
+  ) {
     if (!this._planet.isPositionAvailable(this.position)) {
       throw new Error("The rover can't be on an obstacle");
     }
   }
 
   turnRight() {
-    const rightOrientation = this.orientation.clockwise()
+    const rightOrientation = this.orientation.clockwise();
 
     return new Rover(this.position, rightOrientation, this._planet);
   }
 
   turnLeft() {
-    const leftOrientation = this.orientation.counterClockwise()
+    const leftOrientation = this.orientation.counterClockwise();
 
     return new Rover(this.position, leftOrientation, this._planet);
   }
@@ -46,6 +50,6 @@ export class Rover implements IRover {
   }
 
   toString() {
-    return `Rover orienté ${this.orientation.toString()} à la position ${this.position.toString()}`
+    return `Rover orienté ${this.orientation.toString()} à la position ${this.position.toString()}`;
   }
 }

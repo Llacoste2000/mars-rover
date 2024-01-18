@@ -1,12 +1,9 @@
 import { WebSocket } from "ws";
 import { IProtocolCommunication } from "./ProtocolCommunication.interface";
 
-const topicCommand = "command";
-
 type MessageCallback = (message: string) => void;
 
 export class WebSocketProtocolCommunicationClient implements IProtocolCommunication {
-
   private messages: MessageCallback[] = [];
 
   private socket: WebSocket;
@@ -31,7 +28,7 @@ export class WebSocketProtocolCommunicationClient implements IProtocolCommunicat
     this.messages.forEach((callback) => callback(message));
   }
 
-  onReceiveMessage(callback: (message: string) => void): void {
+  onReceiveMessage(callback: MessageCallback): void {
     this.messages.push(callback);
   }
 }

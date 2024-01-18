@@ -7,7 +7,7 @@ export class Integer {
 
   public constructor(value: number) {
     if (!Number.isInteger(value)) {
-      throw new Error(`${value} is not an integer.`)
+      throw new Error(`${value} is not an integer.`);
     }
     this._value = value;
   }
@@ -33,12 +33,10 @@ export class Integer {
   }
 
   public equals(other: Integer): boolean {
-    return this._value === other._value
+    return this._value === other._value;
   }
 
   public toString(): string {
-    return `${this._value}`
+    return `${this._value}`;
   }
-
-
 }
