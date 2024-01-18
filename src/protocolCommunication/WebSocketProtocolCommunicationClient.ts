@@ -8,8 +8,8 @@ export class WebSocketProtocolCommunicationClient implements IProtocolCommunicat
 
   private socket: WebSocket;
 
-  constructor() {
-    this.socket = new WebSocket("ws://localhost:3000");
+  constructor(url: string) {
+    this.socket = new WebSocket(url);
 
     this.socket.on("open", () => {
       console.log("connected");

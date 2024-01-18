@@ -10,7 +10,7 @@ export class WebsocketProtocolCommunication implements IProtocolCommunication {
 
   private messages: MessageCallback[] = [];
 
-  constructor() {
+  constructor(port: number) {
     this.server = Bun.serve({
       fetch(req, server) {
         const success = server.upgrade(req);
@@ -33,7 +33,7 @@ export class WebsocketProtocolCommunication implements IProtocolCommunication {
           this.receive(message.toString());
         },
       },
-      port: 3000,
+      port: port,
     });
 
     console.log(`Listening on ${this.server.hostname}:${this.server.port}`);
