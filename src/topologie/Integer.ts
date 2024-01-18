@@ -39,4 +39,8 @@ export class Integer {
   public toString(): string {
     return `${this._value}`;
   }
+
+  public toNumber(): number {
+    return this._value;
+  }
 }

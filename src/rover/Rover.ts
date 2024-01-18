@@ -2,6 +2,7 @@ import { IRover } from "./Rover.interface.ts";
 import { Orientation } from "../topologie/Orientation.ts";
 import { IPlanet } from "../topologie/Planet.interface.ts";
 import { Position } from "../topologie/Position.ts";
+import { ObstacleError } from "../errors/ObstacleError.ts";
 
 // Objet-valeur
 export class Rover implements IRover {
@@ -11,7 +12,7 @@ export class Rover implements IRover {
     private readonly _planet: IPlanet,
   ) {
     if (!this._planet.isPositionAvailable(this.position)) {
-      throw new Error("The rover can't be on an obstacle");
+      throw new ObstacleError(this.position);
     }
   }
 
@@ -31,22 +32,14 @@ export class Rover implements IRover {
     const newPosition = this.position.add(this.orientation.vector);
     const newPositionNormalized = this._planet.normalize(newPosition);
 
-    try {
-      return new Rover(newPositionNormalized, this.orientation, this._planet);
-    } catch (error) {
-      return this;
-    }
+    return new Rover(newPositionNormalized, this.orientation, this._planet);
   }
 
   backward() {
     const newPosition = this.position.subtract(this.orientation.vector);
     const newPositionNormalized = this._planet.normalize(newPosition);
 
-    try {
-      return new Rover(newPositionNormalized, this.orientation, this._planet);
-    } catch (error) {
-      return this;
-    }
+    return new Rover(newPositionNormalized, this.orientation, this._planet);
   }
 
   toString() {

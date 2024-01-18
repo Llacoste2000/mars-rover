@@ -1,6 +1,7 @@
 import { RoverBuilder } from "../rover/RoverBuilder";
 import { RoverInterpreter } from "../roverInterpreter/RoverInterpreter";
 import { IRover } from "../rover/Rover.interface";
+import { describe, expect, test } from "bun:test";
 
 describe("RoverInterpreter", () => {
   test.each([
@@ -16,7 +17,7 @@ describe("RoverInterpreter", () => {
 
     const interpreter = new RoverInterpreter(initialRover);
 
-    const newRover = interpreter.interpret(command);
+    const [newRover] = interpreter.interpret(command);
 
     const roverTets = new RoverBuilder().build();
     const roverExpect = action(roverTets);

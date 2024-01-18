@@ -1,7 +1,7 @@
 import { WebSocket } from "ws";
-import { IProtocolCommunication } from "./ProtocolCommunication.interface";
+import { IProtocolCommunication, Message } from "./ProtocolCommunication.interface";
 
-type MessageCallback = (message: string) => void;
+type MessageCallback = (message: Message) => void;
 
 export class WebSocketProtocolCommunicationClient implements IProtocolCommunication {
   private messages: MessageCallback[] = [];
@@ -20,12 +20,15 @@ export class WebSocketProtocolCommunicationClient implements IProtocolCommunicat
     });
   }
 
-  send(message: string): void {
-    this.socket.send(message);
+  send(message: Message): void {
+    console.error("client, send", message);
+    this.socket.send(JSON.stringify(message));
   }
 
   receive(message: string): void {
-    this.messages.forEach((callback) => callback(message));
+    console.error("client, received", message);
+    const parsedMessage = JSON.parse(message);
+    this.messages.forEach((callback) => callback(parsedMessage));
   }
 
   onReceiveMessage(callback: MessageCallback): void {

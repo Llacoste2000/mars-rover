@@ -1,9 +1,9 @@
 import { Server } from "bun";
-import { IProtocolCommunication } from "./ProtocolCommunication.interface";
+import { IProtocolCommunication, Message } from "./ProtocolCommunication.interface";
 
 const topicCommand = "command";
 
-type MessageCallback = (message: string) => void;
+type MessageCallback = (message: Message) => void;
 
 export class WebsocketProtocolCommunicationServer implements IProtocolCommunication {
   private readonly server: Server;
@@ -39,15 +39,18 @@ export class WebsocketProtocolCommunicationServer implements IProtocolCommunicat
     console.log(`Listening on ${this.server.hostname}:${this.server.port}`);
   }
 
-  send(message: string): void {
-    this.server.publish(topicCommand, message);
+  send(message: Message): void {
+    console.error("server, send", message);
+    this.server.publish(topicCommand, JSON.stringify(message));
   }
 
   receive(message: string): void {
-    this.messages.forEach((callback) => callback(message));
+    console.error("server, received", message);
+    const parsedMessage = JSON.parse(message);
+    this.messages.forEach((callback) => callback(parsedMessage));
   }
 
-  onReceiveMessage(callback: (message: string) => void): void {
+  onReceiveMessage(callback: (message: Message) => void): void {
     this.messages.push(callback);
   }
 }
