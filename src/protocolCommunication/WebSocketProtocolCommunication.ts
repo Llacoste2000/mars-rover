@@ -3,8 +3,13 @@ import { IProtocolCommunication } from "./ProtocolCommunication.interface";
 
 const topicCommand = "command";
 
+type MessageCallback = (message: string) => void;
+
 export class WebsocketProtocolCommunication implements IProtocolCommunication {
   private readonly server: Server;
+
+  private messages: MessageCallback[] = [];
+
   constructor() {
     this.server = Bun.serve({
       fetch(req, server) {
@@ -39,6 +44,10 @@ export class WebsocketProtocolCommunication implements IProtocolCommunication {
   }
 
   receive(message: string): void {
-    console.log(`Received: ${message}`);
+    this.messages.forEach((callback) => callback(message));
+  }
+
+  onReceiveMessage(callback: (message: string) => void): void {
+    this.messages.push(callback);
   }
 }

@@ -1,9 +1,10 @@
 import { MissionControl } from "./missionControl/MissionControl";
-import { WebsocketProtocolCommunication } from "./protocolCommunication/WebsocketProtocolCommunication";
+import { WebSocketProtocolCommunicationClient } from "./protocolCommunication/WebSocketProtocolCommunicationClient";
 import { UserInputThread } from "./userInputThread/userInputThread";
 
-const websocketProtocolCommunication = new WebsocketProtocolCommunication();
-const missionControl = new MissionControl(websocketProtocolCommunication);
+const websocketProtocolCommunicationClient = new WebSocketProtocolCommunicationClient()
+
+const missionControl = new MissionControl(websocketProtocolCommunicationClient);
 
 new UserInputThread((message) => {
   missionControl.send(message);
