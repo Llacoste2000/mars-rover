@@ -9,10 +9,10 @@ export class PlanetUi {
   ) {}
 
   public display() {
-    for (let index = 0; index < this.planetSize.x.toNumber(); index += 1) {
+    for (let rowIndex = 0; rowIndex < this.planetSize.x.toNumber(); rowIndex += 1) {
       let line = "";
-      for (let index2 = 0; index2 < this.planetSize.y.toNumber(); index2 += 1) {
-        const position = new Position(new Integer(index), new Integer(index2));
+      for (let columnIndex = 0; columnIndex < this.planetSize.y.toNumber(); columnIndex += 1) {
+        const position = new Position(new Integer(rowIndex), new Integer(columnIndex));
 
         if (this.positionHasRover(position)) {
           line += "R";

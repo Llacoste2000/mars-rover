@@ -21,4 +21,11 @@ export class Position {
   public toString() {
     return `(${this.x.toString()}, ${this.y.toString()})`;
   }
+
+  public toJson() {
+    return {
+      x: this.x.toNumber(),
+      y: this.y.toNumber(),
+    };
+  }
 }

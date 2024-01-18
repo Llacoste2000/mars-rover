@@ -21,14 +21,14 @@ export class RemoteRover {
 
       protocolCommunication.send({
         type: "position",
-        data: { x: this.rover.position.x.toNumber(), y: this.rover.position.y.toNumber() },
+        data: this.rover.position.toJson(),
       });
 
       if (error) {
         if (error instanceof ObstacleError) {
           protocolCommunication.send({
             type: "obstacle",
-            data: { x: error.position.x.toNumber(), y: error.position.y.toNumber() },
+            data: error.position.toJson(),
           });
         }
 

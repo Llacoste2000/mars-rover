@@ -12,6 +12,7 @@ const protocolCommunicationServer = new WebsocketProtocolCommunicationServer(300
 const planet = new PlanetWithObstacle(new PlanetToroidal(new Position(new Integer(5), new Integer(5))), [
   new Position(new Integer(2), new Integer(2)),
 ]);
+
 const rover: IRover = new RoverBuilder().onPlanet(planet).build();
 
 const remoteRover = new RemoteRover(rover, protocolCommunicationServer);
