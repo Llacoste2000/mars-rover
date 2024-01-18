@@ -1,9 +1,9 @@
-import { WebsocketProtocolCommunication } from "../protocolCommunication/WebSocketProtocolCommunication";
+import { WebsocketProtocolCommunicationServer } from "../protocolCommunication/WebSocketProtocolCommunicationServer";
 import { WebSocketProtocolCommunicationClient } from "../protocolCommunication/WebSocketProtocolCommunicationClient";
 
 export class Repeater {
   constructor(
-    protocolCommunicationServer: WebsocketProtocolCommunication,
+    protocolCommunicationServer: WebsocketProtocolCommunicationServer,
     protocolCommunicationClient: WebSocketProtocolCommunicationClient,
   ) {
     protocolCommunicationClient.onReceiveMessage((message) => {

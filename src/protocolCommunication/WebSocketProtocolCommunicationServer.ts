@@ -5,7 +5,7 @@ const topicCommand = "command";
 
 type MessageCallback = (message: string) => void;
 
-export class WebsocketProtocolCommunication implements IProtocolCommunication {
+export class WebsocketProtocolCommunicationServer implements IProtocolCommunication {
   private readonly server: Server;
 
   private messages: MessageCallback[] = [];
