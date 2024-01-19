@@ -1,5 +1,6 @@
 import { Server } from "bun";
-import { IProtocolCommunication, Message } from "./ProtocolCommunication.interface";
+import { IProtocolCommunication } from "./ProtocolCommunication.interface";
+import { Message } from "./Message.interface";
 
 const topicCommand = "command";
 

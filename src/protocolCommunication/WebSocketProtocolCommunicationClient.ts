@@ -1,5 +1,6 @@
 import { WebSocket } from "ws";
-import { IProtocolCommunication, Message } from "./ProtocolCommunication.interface";
+import { IProtocolCommunication } from "./ProtocolCommunication.interface";
+import { Message } from "./Message.interface";
 
 type MessageCallback = (message: Message) => void;
 

@@ -1,4 +1,5 @@
-import { IProtocolCommunication, Message } from "../protocolCommunication/ProtocolCommunication.interface";
+import { Message } from "../protocolCommunication/Message.interface";
+import { IProtocolCommunication } from "../protocolCommunication/ProtocolCommunication.interface";
 import { Integer } from "../topologie/Integer";
 import { Position } from "../topologie/Position";
 import { PlanetUiBuilder } from "./PlanetUiBuilder";
