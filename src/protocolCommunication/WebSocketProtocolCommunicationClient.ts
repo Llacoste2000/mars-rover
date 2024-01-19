@@ -22,12 +22,12 @@ export class WebSocketProtocolCommunicationClient implements IProtocolCommunicat
   }
 
   send(message: Message): void {
-    console.error("client, send", message);
+    console.log("client, send", message);
     this.socket.send(JSON.stringify(message));
   }
 
   receive(message: string): void {
-    console.error("client, received", message);
+    console.log("client, received", message);
     const parsedMessage = JSON.parse(message);
     this.messages.forEach((callback) => callback(parsedMessage));
   }

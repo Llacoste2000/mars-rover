@@ -37,6 +37,6 @@ export class RoverInterpreter {
       error = e as Error;
     }
 
-    return { roverHistory: newRovers, currentRover: newRovers[newRovers.length - 1], error };
+    return { roverHistory: newRovers, currentRover: newRovers[newRovers.length - 1] || this.rover, error };
   }
 }

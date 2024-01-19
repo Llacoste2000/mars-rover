@@ -13,6 +13,7 @@ export class PlanetUiConsole implements IPlanetUi {
   ) {}
 
   public display() {
+    console.log("========================");
     for (let columnIndex = this.planetSize.y.toNumber() - 1; columnIndex >= 0; columnIndex -= 1) {
       let line = "";
       for (let rowIndex = 0; rowIndex < this.planetSize.x.toNumber(); rowIndex += 1) {
@@ -38,6 +39,7 @@ export class PlanetUiConsole implements IPlanetUi {
       }
       console.log(`${line}\n`);
     }
+    console.log("========================");
   }
 
   private positionHasRover(position: Position) {

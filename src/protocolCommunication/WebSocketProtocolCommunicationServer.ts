@@ -41,12 +41,12 @@ export class WebsocketProtocolCommunicationServer implements IProtocolCommunicat
   }
 
   send(message: Message): void {
-    console.error("server, send", message);
+    console.info("server, send", message);
     this.server.publish(topicCommand, JSON.stringify(message));
   }
 
   receive(message: string): void {
-    console.error("server, received", message);
+    console.info("server, received", message);
     const parsedMessage = JSON.parse(message);
     this.messages.forEach((callback) => callback(parsedMessage));
   }
