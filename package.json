@@ -6,6 +6,7 @@
   "scripts": {
     "start": "bun src/main.ts",
     "start:rover": "bun src/mainRover.ts",
+    "start:repeater": "bun src/mainRepeater.ts",
     "start:mission-control": "bun src/mainMissionControl.ts",
     "lint": "eslint . --ext .ts"
   },
