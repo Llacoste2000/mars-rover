@@ -1,7 +1,8 @@
 import { Integer } from "../topologie/Integer";
 import { Position } from "../topologie/Position";
+import { IPlanetUi } from "./PlanetUi.interface";
 
-export class PlanetUi {
+export class PlanetUiConsole implements IPlanetUi {
   constructor(
     private readonly planetSize: Position,
     private readonly obstaclesPositions: Position[],
@@ -45,19 +46,18 @@ export class PlanetUi {
     });
   }
 
-  public updateRoverPosition(roverPosition: Position) {
-    return new PlanetUi(this.planetSize, this.obstaclesPositions, roverPosition, [
-      ...this.discoveredPositions,
-      this.roverPosition,
-    ]);
-  }
-
   public addObstaclePosition(obstaclePosition: Position) {
-    return new PlanetUi(
+    return new PlanetUiConsole(
       this.planetSize,
       [...this.obstaclesPositions, obstaclePosition],
       this.roverPosition,
       this.discoveredPositions,
     );
+  }
+  public newRoverPosition(position: Position) {
+    return new PlanetUiConsole(this.planetSize, this.obstaclesPositions, position, [
+      ...this.discoveredPositions,
+      this.roverPosition,
+    ]);
   }
 }

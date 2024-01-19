@@ -1,6 +1,6 @@
 import { Integer } from "../topologie/Integer";
 import { Position } from "../topologie/Position";
-import { PlanetUi } from "./PlanetUi";
+import { PlanetUiConsole } from "./PlanetUiConsole";
 
 export class PlanetUiBuilder {
   private planetSize = new Position(new Integer(5), new Integer(5));
@@ -29,6 +29,6 @@ export class PlanetUiBuilder {
   }
 
   public build() {
-    return new PlanetUi(this.planetSize, this.planetObstacles, this.roverPosition, this.discoveredPositions);
+    return new PlanetUiConsole(this.planetSize, this.planetObstacles, this.roverPosition, this.discoveredPositions);
   }
 }

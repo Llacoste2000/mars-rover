@@ -1,24 +1,20 @@
+import { IPlanetUi } from "../PlanetUi/PlanetUi.interface";
 import { Message } from "../protocolCommunication/Message.interface";
 import { IProtocolCommunication } from "../protocolCommunication/ProtocolCommunication.interface";
 import { Integer } from "../topologie/Integer";
 import { Position } from "../topologie/Position";
-import { PlanetUiBuilder } from "./PlanetUiBuilder";
-
-const PLANET_SIZE = new Position(new Integer(5), new Integer(5));
 
 export class MissionControl {
-  private planetUi = new PlanetUiBuilder().withPlanetSize(PLANET_SIZE).build();
-  constructor(private readonly protocolCommunication: IProtocolCommunication) {
+  constructor(
+    private readonly protocolCommunication: IProtocolCommunication,
+    private planetUi: IPlanetUi,
+  ) {
     protocolCommunication.onReceiveMessage((message: Message) => {
-      console.log(message);
-
       this.updateUi(message);
-
-      this.planetUi.display();
     });
   }
 
-  send(command: string) {
+  public send(command: string) {
     this.protocolCommunication.send({
       type: "command",
       data: command,
@@ -27,7 +23,7 @@ export class MissionControl {
 
   private updateUi(message: Message) {
     if (message.type === "position") {
-      this.planetUi = this.planetUi.updateRoverPosition(
+      this.planetUi = this.planetUi.newRoverPosition(
         new Position(new Integer(message.data.x), new Integer(message.data.y)),
       );
     } else if (message.type === "obstacle") {
@@ -35,5 +31,7 @@ export class MissionControl {
         new Position(new Integer(message.data.x), new Integer(message.data.y)),
       );
     }
+
+    this.planetUi.display();
   }
 }
