@@ -6,6 +6,7 @@ export class PlanetUiBuilder {
   private planetSize = new Position(new Integer(5), new Integer(5));
   private roverPosition = new Position(new Integer(0), new Integer(0));
   private planetObstacles: Position[] = [];
+  private discoveredPositions: Position[] = [];
 
   public withPlanetSize(planetSize: Position) {
     this.planetSize = planetSize;
@@ -22,7 +23,12 @@ export class PlanetUiBuilder {
     return this;
   }
 
+  public withDiscoveredPositions(discoveredPositions: Position[]) {
+    this.discoveredPositions = discoveredPositions;
+    return this;
+  }
+
   public build() {
-    return new PlanetUi(this.planetSize, this.planetObstacles, this.roverPosition);
+    return new PlanetUi(this.planetSize, this.planetObstacles, this.roverPosition, this.discoveredPositions);
   }
 }

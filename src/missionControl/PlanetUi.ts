@@ -6,6 +6,7 @@ export class PlanetUi {
     private readonly planetSize: Position,
     private readonly obstaclesPositions: Position[],
     private readonly roverPosition: Position,
+    private readonly discoveredPositions: Position[],
   ) {}
 
   public display() {
@@ -18,6 +19,8 @@ export class PlanetUi {
           line += "R";
         } else if (this.positionHasObstacle(position)) {
           line += "O";
+        } else if (this.positionIsDiscovered(position)) {
+          line += "_";
         } else {
           line += ".";
         }
@@ -36,11 +39,25 @@ export class PlanetUi {
     });
   }
 
+  private positionIsDiscovered(position: Position) {
+    return this.discoveredPositions.find((discoveredPosition) => {
+      return discoveredPosition.equals(position);
+    });
+  }
+
   public updateRoverPosition(roverPosition: Position) {
-    return new PlanetUi(this.planetSize, this.obstaclesPositions, roverPosition);
+    return new PlanetUi(this.planetSize, this.obstaclesPositions, roverPosition, [
+      ...this.discoveredPositions,
+      this.roverPosition,
+    ]);
   }
 
   public addObstaclePosition(obstaclePosition: Position) {
-    return new PlanetUi(this.planetSize, [...this.obstaclesPositions, obstaclePosition], this.roverPosition);
+    return new PlanetUi(
+      this.planetSize,
+      [...this.obstaclesPositions, obstaclePosition],
+      this.roverPosition,
+      this.discoveredPositions,
+    );
   }
 }
