@@ -24,8 +24,11 @@ export class RemoteRover {
     this.rover = newRover;
 
     this.protocolCommunication.send({
-      type: "position",
-      data: this.rover.position.toJson(),
+      type: "positionAndOrientation",
+      data: {
+        position: this.rover.position.toJson(),
+        orientationLetter: this.rover.orientation.toString(),
+      },
     });
 
     if (error) {

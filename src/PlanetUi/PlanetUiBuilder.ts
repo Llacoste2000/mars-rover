@@ -1,10 +1,12 @@
 import { Integer } from "../topologie/Integer";
+import { Orientation } from "../topologie/Orientation";
 import { Position } from "../topologie/Position";
 import { PlanetUiConsole } from "./PlanetUiConsole";
 
 export class PlanetUiBuilder {
   private planetSize = new Position(new Integer(5), new Integer(5));
   private roverPosition = new Position(new Integer(0), new Integer(0));
+  private roverOrientation = Orientation.North;
   private planetObstacles: Position[] = [];
   private discoveredPositions: Position[] = [];
 
@@ -28,7 +30,18 @@ export class PlanetUiBuilder {
     return this;
   }
 
+  public withRoverOrientation(roverOrientation: Orientation) {
+    this.roverOrientation = roverOrientation;
+    return this;
+  }
+
   public build() {
-    return new PlanetUiConsole(this.planetSize, this.planetObstacles, this.roverPosition, this.discoveredPositions);
+    return new PlanetUiConsole(
+      this.planetSize,
+      this.planetObstacles,
+      this.roverPosition,
+      this.roverOrientation,
+      this.discoveredPositions,
+    );
   }
 }

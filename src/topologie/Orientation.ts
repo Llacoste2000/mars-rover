@@ -1,13 +1,13 @@
 import { Integer } from "./Integer";
 import { Position } from "./Position";
 
-const EOrientation = {
+export const EOrientation = {
   N: "N",
   S: "S",
   E: "E",
   W: "W",
 } as const;
-type OrientationLetter = (typeof EOrientation)[keyof typeof EOrientation];
+export type OrientationLetter = (typeof EOrientation)[keyof typeof EOrientation];
 
 // Objet-valeur
 export class Orientation {
@@ -37,7 +37,7 @@ export class Orientation {
     return this;
   }
 
-  public toString(): string {
+  public toString(): OrientationLetter {
     return this._letter;
   }
 }
