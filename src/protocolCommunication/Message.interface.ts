@@ -13,11 +13,11 @@ export type MessageObstacle = {
 };
 
 export type MessagePosition = {
-  type: "positionAndOrientation";
+  type: "positionsAndOrientations";
   data: {
     position: { x: number; y: number };
     orientationLetter: OrientationLetter;
-  };
+  }[];
 };
 
 export type MessageError = {

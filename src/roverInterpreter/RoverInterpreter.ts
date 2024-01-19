@@ -21,20 +21,22 @@ export class RoverInterpreter {
     return this.rover;
   }
 
-  public interpret(command: string): [IRover, Error | null] {
+  public interpret(command: string): { roverHistory: IRover[]; currentRover: IRover; error: Error | null } {
     const commands = command.split("") as RoverInterpreterCommands[];
 
-    let newRover: IRover = this.rover;
+    const newRovers: IRover[] = [];
     let error: Error | null = null;
 
     try {
       commands.forEach((command) => {
-        newRover = new RoverInterpreter(newRover).execute(command);
+        const previousRover = newRovers[newRovers.length - 1] || this.rover;
+        const newRover = new RoverInterpreter(previousRover).execute(command);
+        newRovers.push(newRover);
       });
     } catch (e) {
       error = e as Error;
     }
 
-    return [newRover, error];
+    return { roverHistory: newRovers, currentRover: newRovers[newRovers.length - 1], error };
   }
 }

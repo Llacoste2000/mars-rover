@@ -19,16 +19,16 @@ export class RemoteRover {
 
     const roverInterpreter = new RoverInterpreter(this.rover);
 
-    const [newRover, error] = roverInterpreter.interpret(message.data);
+    const { roverHistory, currentRover, error } = roverInterpreter.interpret(message.data);
 
-    this.rover = newRover;
+    this.rover = currentRover;
 
     this.protocolCommunication.send({
-      type: "positionAndOrientation",
-      data: {
-        position: this.rover.position.toJson(),
-        orientationLetter: this.rover.orientation.toString(),
-      },
+      type: "positionsAndOrientations",
+      data: roverHistory.map((rover) => ({
+        position: rover.position.toJson(),
+        orientationLetter: rover.orientation.toString(),
+      })),
     });
 
     if (error) {
