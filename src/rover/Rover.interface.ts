@@ -9,5 +9,6 @@ export interface IRover {
   turnLeft(): IRover;
   forward(): IRover;
   backward(): IRover;
-}
 
+  toString(): string;
+}

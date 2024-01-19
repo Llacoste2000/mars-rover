@@ -1,30 +1,49 @@
-# React + TypeScript + Vite
+# Rover project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Prerequisite
 
-Currently, two official plugins are available:
+- The latest version of [Bun](https://bun.sh/docs/installation) (if you are on windows, install it on WSL2)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## How to install ?
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```sh
+bun install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## How to start ?
+
+In the first terminal:
+
+```sh
+bun start:rover
+```
+
+In the second terminal:
+
+```sh
+bun start:repeater
+```
+
+In the third terminal:
+
+```sh
+bun start:mission-control
+```
+
+## How to move the rover
+
+In the Mission-control terminal, you can send command like
+
+- `F` Forward
+- `B` Backward
+- `R` Turn right
+- `L` Turn left
+
+You can chain multiple letter at once. For example `FRF` for Forward->Turn right->Forward
+
+## Map explanation
+
+- `^ > v <` Rover (looking in a cardinal direction)
+- `.` Unknown position
+- `_` Empty position
+- `O` Obstacle

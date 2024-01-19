@@ -4,7 +4,6 @@ import { IPlanet } from "./Planet.interface";
 
 // Objet-valeur
 export class PlanetToroidal implements IPlanet {
-
   constructor(public size: Position) {
     if (size.x.lessThan(Integer.zero) || size.y.lessThan(Integer.zero)) {
       throw new Error("Size must be positive");
@@ -14,8 +13,8 @@ export class PlanetToroidal implements IPlanet {
   }
 
   public normalize(position: Position) {
-    const converterX = position.x.lessThan(Integer.zero) ? position.x.add(this.size.x) : position.x
-    const converterY = position.y.lessThan(Integer.zero) ? position.y.add(this.size.y) : position.y
+    const converterX = position.x.lessThan(Integer.zero) ? position.x.add(this.size.x) : position.x;
+    const converterY = position.y.lessThan(Integer.zero) ? position.y.add(this.size.y) : position.y;
 
     return new Position(converterX.modulo(this.size.x), converterY.modulo(this.size.y));
   }
