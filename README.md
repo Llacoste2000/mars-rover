@@ -12,6 +12,8 @@ bun install
 
 ## How to start ?
 
+### Repeater enabled
+
 In the first terminal:
 
 ```sh
@@ -29,6 +31,24 @@ In the third terminal:
 ```sh
 bun start:mission-control
 ```
+
+### Repeater disabled
+
+In the first terminal:
+
+```sh
+bun start:rover
+```
+
+In the second terminal:
+
+```sh
+bun start:mission-control
+```
+
+## Config file explained
+
+- `REPEATER_ENABLED` Determines if you use the repeater or not
 
 ## How to move the rover
 
