@@ -4,10 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "bun src/main.ts",
-    "start:rover": "bun src/mainRover.ts",
-    "start:repeater": "bun src/mainRepeater.ts",
-    "start:mission-control": "bun src/mainMissionControl.ts",
+    "start:rover": "bun src/main/mainRover.ts",
+    "start:repeater": "bun src/main/mainRepeater.ts",
+    "start:mission-control": "bun src/main/mainMissionControl.ts",
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {

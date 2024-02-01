@@ -1,8 +1,8 @@
-import { ObstacleError } from "../errors/ObstacleError";
 import { IRover } from "./Rover.interface";
-import { RoverInterpreter } from "../roverInterpreter/RoverInterpreter";
-import { IProtocolCommunication } from "../protocolCommunication/ProtocolCommunication.interface";
-import { Message, MessageCommand } from "../protocolCommunication/Message.interface";
+import { RoverInterpreter } from "../../core/roverInterpreter/RoverInterpreter";
+import { IProtocolCommunication } from "../../core/protocolCommunication/ProtocolCommunication.interface";
+import { Message, MessageCommand } from "../../core/protocolCommunication/Message.interface";
+import { ObstacleError } from "../../core/errors/ObstacleError";
 
 export class RemoteRover {
   constructor(

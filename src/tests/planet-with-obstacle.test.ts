@@ -1,7 +1,7 @@
-import { Position } from "../topologie/Position";
-import { PlanetWithObstacle } from "../topologie/PlanetWithObstacle";
-import { PlanetToroidal } from "../topologie/PlanetToroidal";
-import { Integer } from "../topologie/Integer";
+import { Position } from "../core/topologie/Position";
+import { PlanetWithObstacle } from "../core/topologie/PlanetWithObstacle";
+import { PlanetToroidal } from "../core/topologie/PlanetToroidal";
+import { Integer } from "../core/topologie/Integer";
 
 describe("Infinite planet with obstacle", () => {
   const planet = new PlanetToroidal(new Position(new Integer(5), new Integer(5)));

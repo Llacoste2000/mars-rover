@@ -1,4 +1,4 @@
-import { Position } from "../topologie/Position";
+import { Position } from "../core/topologie/Position";
 
 export class ObstacleError extends Error {
   constructor(public readonly position: Position) {
