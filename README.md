@@ -67,3 +67,7 @@ You can chain multiple letter at once. For example `FRF` for Forward->Turn right
 - `.` Unknown position
 - `_` Empty position
 - `O` Obstacle
+
+## Tests
+
+You can run the tests with `bun test`
