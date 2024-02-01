@@ -1,5 +1,5 @@
 import { RoverBuilder } from "@App/rover/RoverBuilder";
-import { RoverInterpreter } from "@Core/roverInterpreter/RoverInterpreter";
+import { RoverInterpreter } from "@App/roverInterpreter/RoverInterpreter";
 import { IRover } from "@App/rover/Rover.interface";
 import { describe, expect, test } from "bun:test";
 
