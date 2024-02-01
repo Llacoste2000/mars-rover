@@ -1,18 +1,8 @@
-import { Server } from "bun";
-import { IProtocolCommunication } from "./ProtocolCommunication.interface";
-import { Message } from "./Message.interface";
+import { WebsocketProtocolAbstract, topicCommand } from "./WebsocketProtocolAbstract";
 
-const topicCommand = "command";
-
-type MessageCallback = (message: Message) => void;
-
-export class WebsocketProtocolCommunicationServer implements IProtocolCommunication {
-  private readonly server: Server;
-
-  private messages: MessageCallback[] = [];
-
+export class WebsocketProtocolCommunicationServer extends WebsocketProtocolAbstract {
   constructor(port: number) {
-    this.server = Bun.serve({
+    const socket = Bun.serve({
       fetch(req, server) {
         const success = server.upgrade(req);
         if (success) {
@@ -26,7 +16,7 @@ export class WebsocketProtocolCommunicationServer implements IProtocolCommunicat
       },
       websocket: {
         open(ws) {
-          console.log("Client connected");
+          // console.log("Client connected");
 
           ws.subscribe(topicCommand);
         },
@@ -37,21 +27,8 @@ export class WebsocketProtocolCommunicationServer implements IProtocolCommunicat
       port: port,
     });
 
-    console.log(`Listening on ${this.server.hostname}:${this.server.port}`);
-  }
+    super(socket);
 
-  send(message: Message): void {
-    console.info("server, send", message);
-    this.server.publish(topicCommand, JSON.stringify(message));
-  }
-
-  receive(message: string): void {
-    console.info("server, received", message);
-    const parsedMessage = JSON.parse(message);
-    this.messages.forEach((callback) => callback(parsedMessage));
-  }
-
-  onReceiveMessage(callback: (message: Message) => void): void {
-    this.messages.push(callback);
+    console.log(`Listening on ${socket.hostname}:${socket.port}`);
   }
 }
