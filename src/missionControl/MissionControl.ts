@@ -7,16 +7,18 @@ import { Position } from "../topologie/Position";
 
 export class MissionControl {
   constructor(
-    private readonly protocolCommunication: IProtocolCommunication,
-    private planetUi: IPlanetUi,
+    private readonly _protocolCommunication: IProtocolCommunication,
+    private _planetUi: IPlanetUi,
   ) {
-    protocolCommunication.onReceiveMessage((message: Message) => {
+    _protocolCommunication.onReceiveMessage((message: Message) => {
       this.updateUi(message);
     });
+
+    this._planetUi.display();
   }
 
   public send(command: string) {
-    this.protocolCommunication.send({
+    this._protocolCommunication.send({
       type: "command",
       data: command,
     });
@@ -30,14 +32,14 @@ export class MissionControl {
           new Integer(positionAndOrientation.position.y),
         );
         const newOrientation = OrientationFactory.createOrientation(positionAndOrientation.orientationLetter);
-        this.planetUi = this.planetUi.newRoverPositionAndOrientation(newPosition, newOrientation);
+        this._planetUi = this._planetUi.newRoverPositionAndOrientation(newPosition, newOrientation);
       });
     } else if (message.type === "obstacle") {
-      this.planetUi = this.planetUi.addObstaclePosition(
+      this._planetUi = this._planetUi.addObstaclePosition(
         new Position(new Integer(message.data.x), new Integer(message.data.y)),
       );
     }
 
-    this.planetUi.display();
+    this._planetUi.display();
   }
 }
