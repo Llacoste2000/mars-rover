@@ -19,7 +19,6 @@ export class PlanetToroidal implements IPlanet {
     return new Position(converterX.modulo(this.size.x), converterY.modulo(this.size.y));
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public isPositionAvailable(_position: Position): boolean {
     return true;
   }
