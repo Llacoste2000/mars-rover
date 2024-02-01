@@ -14,32 +14,30 @@ export class PlanetUiConsole implements IPlanetUi {
 
   public display() {
     console.log("========================");
-    for (let columnIndex = this.planetSize.y.toNumber() - 1; columnIndex >= 0; columnIndex -= 1) {
-      let line = "";
-      for (let rowIndex = 0; rowIndex < this.planetSize.x.toNumber(); rowIndex += 1) {
-        const position = new Position(new Integer(rowIndex), new Integer(columnIndex));
-
-        if (this.positionHasRover(position)) {
-          if (this.roverOrientation === Orientation.North) {
-            line += "^";
-          } else if (this.roverOrientation === Orientation.South) {
-            line += "v";
-          } else if (this.roverOrientation === Orientation.East) {
-            line += ">";
-          } else {
-            line += "<";
-          }
-        } else if (this.positionHasObstacle(position)) {
-          line += "O";
-        } else if (this.positionIsDiscovered(position)) {
-          line += "_";
-        } else {
-          line += ".";
-        }
-      }
-      console.log(`${line}\n`);
+    for (let columnIndex = this.planetSize.y.toNumber() - 1; columnIndex >= 0; columnIndex--) {
+      console.log(this.generateLine(columnIndex));
     }
     console.log("========================");
+  }
+
+  private generateLine(columnIndex: number) {
+    let line = "";
+    for (let rowIndex = 0; rowIndex < this.planetSize.x.toNumber(); rowIndex++) {
+      line += this.getLineCharacter(new Position(new Integer(rowIndex), new Integer(columnIndex)));
+    }
+    return line;
+  }
+
+  private getLineCharacter(position: Position) {
+    if (this.positionHasRover(position)) {
+      if (this.roverOrientation === Orientation.North) return "^";
+      if (this.roverOrientation === Orientation.South) return "v";
+      if (this.roverOrientation === Orientation.East) return ">";
+      if (this.roverOrientation === Orientation.West) return "<";
+    }
+    if (this.positionHasObstacle(position)) return "O";
+    if (this.positionIsDiscovered(position)) return "_";
+    return ".";
   }
 
   private positionHasRover(position: Position) {

@@ -8,8 +8,6 @@ import {
   PLANET_SIZE,
 } from "./configuration";
 import { PlanetUiBuilder } from "./PlanetUi/PlanetUiBuilder";
-import { Position } from "./topologie/Position";
-import { Integer } from "./topologie/Integer";
 
 const protocolCommunicationClient = new WebSocketProtocolCommunicationClient(MISSION_CONTROL_CONNECTION_URL);
 

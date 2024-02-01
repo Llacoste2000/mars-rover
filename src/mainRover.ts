@@ -2,10 +2,6 @@ import { WebsocketProtocolCommunicationServer } from "./protocolCommunication/We
 import { RemoteRover } from "./rover/RemoteRover";
 import { IRover } from "./rover/Rover.interface";
 import { RoverBuilder } from "./rover/RoverBuilder";
-import { PlanetToroidal } from "./topologie/PlanetToroidal";
-import { Position } from "./topologie/Position";
-import { Integer } from "./topologie/Integer";
-import { PlanetWithObstacle } from "./topologie/PlanetWithObstacle";
 import { INITIAL_ROVER_ORIENTATION, INITIAL_ROVER_POSITION, PLANET, ROVER_SERVER_PORT } from "./configuration";
 
 try {

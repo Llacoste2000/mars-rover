@@ -3,45 +3,60 @@ import { Orientation } from "../topologie/Orientation";
 import { Position } from "../topologie/Position";
 import { PlanetUiConsole } from "./PlanetUiConsole";
 
+type PlanetConfig = {
+  planetObstacles: Position[];
+  planetSize: Position;
+  discoveredPositions: Position[];
+};
+
+type RoverConfig = {
+  roverPosition: Position;
+  roverOrientation: Orientation;
+};
+
 export class PlanetUiBuilder {
-  private planetSize = new Position(new Integer(5), new Integer(5));
-  private roverPosition = new Position(new Integer(0), new Integer(0));
-  private roverOrientation = Orientation.North;
-  private planetObstacles: Position[] = [];
-  private discoveredPositions: Position[] = [];
+  private roverConfig: RoverConfig = {
+    roverPosition: new Position(new Integer(0), new Integer(0)),
+    roverOrientation: Orientation.North,
+  };
+  private planetConfig: PlanetConfig = {
+    planetObstacles: [],
+    planetSize: new Position(new Integer(5), new Integer(5)),
+    discoveredPositions: [],
+  };
 
   public withPlanetSize(planetSize: Position) {
-    this.planetSize = planetSize;
+    this.planetConfig.planetSize = planetSize;
     return this;
   }
 
   public withRoverPosition(roverPosition: Position) {
-    this.roverPosition = roverPosition;
+    this.roverConfig.roverPosition = roverPosition;
     return this;
   }
 
   public withPlanetObstacles(planetObstacles: Position[]) {
-    this.planetObstacles = planetObstacles;
+    this.planetConfig.planetObstacles = planetObstacles;
     return this;
   }
 
   public withDiscoveredPositions(discoveredPositions: Position[]) {
-    this.discoveredPositions = discoveredPositions;
+    this.planetConfig.discoveredPositions = discoveredPositions;
     return this;
   }
 
   public withRoverOrientation(roverOrientation: Orientation) {
-    this.roverOrientation = roverOrientation;
+    this.roverConfig.roverOrientation = roverOrientation;
     return this;
   }
 
   public build() {
     return new PlanetUiConsole(
-      this.planetSize,
-      this.planetObstacles,
-      this.roverPosition,
-      this.roverOrientation,
-      this.discoveredPositions,
+      this.planetConfig.planetSize,
+      this.planetConfig.planetObstacles,
+      this.roverConfig.roverPosition,
+      this.roverConfig.roverOrientation,
+      this.planetConfig.discoveredPositions,
     );
   }
 }
