@@ -1,13 +1,13 @@
 import { IRover } from "@App/rover/Rover.interface";
 
-export const roverInterpreterCommands = {
+const roverInterpreterCommands = {
   F: "F",
   B: "B",
   L: "L",
   R: "R",
 } as const;
 
-export type RoverInterpreterCommands = (typeof roverInterpreterCommands)[keyof typeof roverInterpreterCommands];
+type RoverInterpreterCommands = (typeof roverInterpreterCommands)[keyof typeof roverInterpreterCommands];
 
 // Service
 export class RoverInterpreter {

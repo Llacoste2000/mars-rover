@@ -7,12 +7,12 @@ export type MessageCommand = {
   data: string;
 };
 
-export type MessageObstacle = {
+type MessageObstacle = {
   type: "obstacle";
   data: { x: number; y: number };
 };
 
-export type MessagePosition = {
+type MessagePosition = {
   type: "positionsAndOrientations";
   data: {
     position: { x: number; y: number };
@@ -20,7 +20,7 @@ export type MessagePosition = {
   }[];
 };
 
-export type MessageError = {
+type MessageError = {
   type: "error";
   data: string;
 };

@@ -2,6 +2,7 @@ import { Position } from "@Core/topologie/Position";
 import { PlanetWithObstacle } from "@Core/topologie/PlanetWithObstacle";
 import { PlanetToroidal } from "@Core/topologie/PlanetToroidal";
 import { Integer } from "@Core/topologie/Integer";
+import { describe, expect, test } from "bun:test";
 
 describe("Infinite planet with obstacle", () => {
   const planet = new PlanetToroidal(new Position(new Integer(5), new Integer(5)));

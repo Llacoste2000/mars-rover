@@ -1,17 +1,6 @@
 {
   "name": "mars-rover",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "start:rover": "bun src/main/mainRover.ts",
-    "start:repeater": "bun src/main/mainRepeater.ts",
-    "start:mission-control": "bun src/main/mainMissionControl.ts",
-    "lint": "eslint . --ext .ts"
-  },
-  "dependencies": {
-    "ws": "^8.16.0"
-  },
   "devDependencies": {
     "@types/bun": "latest",
     "@typescript-eslint/parser": "^6.10.0",
@@ -20,5 +9,13 @@
     "eslint-plugin-prettier": "^5.1.3",
     "prettier": "3.2.4",
     "typescript": "^5.2.2"
-  }
+  },
+  "private": true,
+  "scripts": {
+    "start:rover": "bun src/main/mainRover.ts",
+    "start:repeater": "bun src/main/mainRepeater.ts",
+    "start:mission-control": "bun src/main/mainMissionControl.ts",
+    "lint": "eslint . --ext .ts"
+  },
+  "type": "module"
 }
