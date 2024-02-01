@@ -18,10 +18,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@App/*":["./src/app/*"],
+      "@Core/*":["./src/core/*"],
+    }
   },
   "types": [
     "bun-types" // add Bun global
   ],
+
   "include": [
     "src"
   ]

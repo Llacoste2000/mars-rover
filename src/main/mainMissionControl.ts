@@ -1,13 +1,13 @@
-import { MissionControl } from "../app/missionControl/MissionControl";
-import { WebSocketProtocolCommunicationClient } from "../core/protocolCommunication/WebSocketProtocolCommunicationClient";
-import { UserInputThread } from "../core/userInputThread/userInputThread";
+import { MissionControl } from "@App/missionControl/MissionControl";
+import { WebSocketProtocolCommunicationClient } from "@Core/protocolCommunication/WebSocketProtocolCommunicationClient";
+import { UserInputThread } from "@Core/userInputThread/userInputThread";
 import {
   INITIAL_ROVER_ORIENTATION,
   INITIAL_ROVER_POSITION,
   MISSION_CONTROL_CONNECTION_URL,
   PLANET_SIZE,
-} from "../core/configuration";
-import { PlanetUiBuilder } from "../core/PlanetUi/PlanetUiBuilder";
+} from "@Core/configuration";
+import { PlanetUiBuilder } from "@Core/PlanetUi/PlanetUiBuilder";
 
 const protocolCommunicationClient = new WebSocketProtocolCommunicationClient(MISSION_CONTROL_CONNECTION_URL);
 

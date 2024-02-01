@@ -1,4 +1,4 @@
-import { IRover } from "../../app/rover/Rover.interface";
+import { IRover } from "@App/rover/Rover.interface";
 
 export const roverInterpreterCommands = {
   F: "F",

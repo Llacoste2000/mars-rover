@@ -1,5 +1,5 @@
-import { WebsocketProtocolCommunicationServer } from "../../core/protocolCommunication/WebSocketProtocolCommunicationServer";
-import { WebSocketProtocolCommunicationClient } from "../../core/protocolCommunication/WebSocketProtocolCommunicationClient";
+import { WebsocketProtocolCommunicationServer } from "@Core/protocolCommunication/WebSocketProtocolCommunicationServer";
+import { WebSocketProtocolCommunicationClient } from "@Core/protocolCommunication/WebSocketProtocolCommunicationClient";
 
 export class Repeater {
   constructor(

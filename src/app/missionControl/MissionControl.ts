@@ -1,9 +1,9 @@
-import { IPlanetUi } from "../../core/PlanetUi/PlanetUi.interface";
-import { Message } from "../../core/protocolCommunication/Message.interface";
-import { IProtocolCommunication } from "../../core/protocolCommunication/ProtocolCommunication.interface";
-import { Integer } from "../../core/topologie/Integer";
-import { OrientationFactory } from "../../core/topologie/OrientationFactory";
-import { Position } from "../../core/topologie/Position";
+import { IPlanetUi } from "@Core/PlanetUi/PlanetUi.interface";
+import { Message } from "@Core/protocolCommunication/Message.interface";
+import { IProtocolCommunication } from "@Core/protocolCommunication/ProtocolCommunication.interface";
+import { Integer } from "@Core/topologie/Integer";
+import { OrientationFactory } from "@Core/topologie/OrientationFactory";
+import { Position } from "@Core/topologie/Position";
 
 export class MissionControl {
   constructor(
