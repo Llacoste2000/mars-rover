@@ -1,8 +1,8 @@
-import { WebsocketProtocolCommunicationServer } from "@Core/protocolCommunication/WebSocketProtocolCommunicationServer";
-import { RemoteRover } from "@App/rover/RemoteRover";
-import { IRover } from "@App/rover/Rover.interface";
-import { RoverBuilder } from "@App/rover/RoverBuilder";
-import { INITIAL_ROVER_ORIENTATION, INITIAL_ROVER_POSITION, PLANET, ROVER_SERVER_PORT } from "@Core/configuration";
+import { WebsocketProtocolCommunicationServer } from "@Infrastructure/protocolCommunication/WebSocketProtocolCommunicationServer";
+import { RemoteRover } from "@Domainrover/RemoteRover";
+import { IRover } from "@Domainrover/Rover.interface";
+import { RoverBuilder } from "@Domainrover/RoverBuilder";
+import { INITIAL_ROVER_ORIENTATION, INITIAL_ROVER_POSITION, PLANET, ROVER_SERVER_PORT } from "@Infrastructure/configuration";
 
 try {
   const protocolCommunicationServer = new WebsocketProtocolCommunicationServer(ROVER_SERVER_PORT);

@@ -1,6 +1,6 @@
-import { RoverBuilder } from "@App/rover/RoverBuilder";
-import { RoverInterpreter } from "@App/roverInterpreter/RoverInterpreter";
-import { IRover } from "@App/rover/Rover.interface";
+import { RoverBuilder } from "@Domainrover/RoverBuilder";
+import { RoverInterpreter } from "@DomainroverInterpreter/RoverInterpreter";
+import { IRover } from "@Domainrover/Rover.interface";
 import { describe, expect, test } from "bun:test";
 
 describe("RoverInterpreter", () => {

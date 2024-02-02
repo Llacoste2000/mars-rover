@@ -1,5 +1,5 @@
-import { Orientation } from "../topologie/Orientation";
-import { Position } from "../topologie/Position";
+import { Orientation } from "@Domain/topologie/Orientation";
+import { Position } from "@Domain/topologie/Position";
 
 export interface IPlanetUi {
   display: () => void;

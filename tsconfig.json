@@ -19,8 +19,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@App/*":["./src/app/*"],
-      "@Core/*":["./src/core/*"],
+      "@Domain*":["./src/domain/*"],
+      "@Infrastructure/*":["./src/infrastructure/*"],
     }
   },
   "types": [

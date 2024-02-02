@@ -1,7 +1,7 @@
-import { Position } from "@Core/topologie/Position";
-import { PlanetWithObstacle } from "@Core/topologie/PlanetWithObstacle";
-import { PlanetToroidal } from "@Core/topologie/PlanetToroidal";
-import { Integer } from "@Core/topologie/Integer";
+import { Position } from "@Domaintopologie/Position";
+import { PlanetWithObstacle } from "@Domaintopologie/PlanetWithObstacle";
+import { PlanetToroidal } from "@Domaintopologie/PlanetToroidal";
+import { Integer } from "@Domaintopologie/Integer";
 import { describe, expect, test } from "bun:test";
 
 describe("Infinite planet with obstacle", () => {

@@ -1,6 +1,6 @@
-import { Integer } from "../topologie/Integer";
-import { Orientation } from "../topologie/Orientation";
-import { Position } from "../topologie/Position";
+import { Integer } from "@Domain/topologie/Integer";
+import { Orientation } from "@Domain/topologie/Orientation";
+import { Position } from "@Domain/topologie/Position";
 import { IPlanetUi } from "./PlanetUi.interface";
 
 export class PlanetUiConsole implements IPlanetUi {

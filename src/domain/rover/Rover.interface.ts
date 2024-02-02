@@ -1,5 +1,5 @@
-import { Orientation } from "@Core/topologie/Orientation";
-import { Position } from "@Core/topologie/Position";
+import { Orientation } from "@Domaintopologie/Orientation";
+import { Position } from "@Domaintopologie/Position";
 
 export interface IRover {
   orientation: Orientation;

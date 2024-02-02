@@ -1,10 +1,10 @@
-import { Integer } from "@Core/topologie/Integer";
-import { Orientation } from "@Core/topologie/Orientation";
-import { PlanetInfinite } from "@Core/topologie/PlanetInfinite";
-import { PlanetToroidal } from "@Core/topologie/PlanetToroidal";
-import { PlanetWithObstacle } from "@Core/topologie/PlanetWithObstacle";
-import { Position } from "@Core/topologie/Position";
-import { RoverBuilder } from "@App/rover/RoverBuilder";
+import { Integer } from "@Domaintopologie/Integer";
+import { Orientation } from "@Domaintopologie/Orientation";
+import { PlanetInfinite } from "@Domaintopologie/PlanetInfinite";
+import { PlanetToroidal } from "@Domaintopologie/PlanetToroidal";
+import { PlanetWithObstacle } from "@Domaintopologie/PlanetWithObstacle";
+import { Position } from "@Domaintopologie/Position";
+import { RoverBuilder } from "@Domainrover/RoverBuilder";
 import { describe, expect, it } from "bun:test";
 
 describe("Rover on a toroidal planet", () => {
