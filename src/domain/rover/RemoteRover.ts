@@ -2,7 +2,7 @@ import { IRover } from "./Rover.interface";
 import { RoverInterpreter } from "@Domain/roverInterpreter/RoverInterpreter";
 import { IProtocolCommunication } from "@Infrastructure/protocolCommunication/ProtocolCommunication.interface";
 import { Message, MessageCommand } from "@Infrastructure/protocolCommunication/Message.interface";
-import { ObstacleError } from "@Infrastructure/errors/ObstacleError";
+import { ObstacleError } from "@Domain/topologie/ObstacleError";
 
 export class RemoteRover {
   constructor(
