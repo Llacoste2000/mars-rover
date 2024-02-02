@@ -16,33 +16,33 @@ export class Rover implements IRover {
     }
   }
 
-  turnRight() {
+  public async turnRight() {
     const rightOrientation = this.orientation.clockwise();
 
     return new Rover(this.position, rightOrientation, this._planet);
   }
 
-  turnLeft() {
+  public async turnLeft() {
     const leftOrientation = this.orientation.counterClockwise();
 
     return new Rover(this.position, leftOrientation, this._planet);
   }
 
-  forward() {
+  public async forward() {
     const newPosition = this.position.add(this.orientation.vector);
     const newPositionNormalized = this._planet.normalize(newPosition);
 
     return new Rover(newPositionNormalized, this.orientation, this._planet);
   }
 
-  backward() {
+  public async backward() {
     const newPosition = this.position.subtract(this.orientation.vector);
     const newPositionNormalized = this._planet.normalize(newPosition);
 
     return new Rover(newPositionNormalized, this.orientation, this._planet);
   }
 
-  toString() {
+  public toString() {
     return `Rover orienté ${this.orientation.toString()} à la position ${this.position.toString()}`;
   }
 }

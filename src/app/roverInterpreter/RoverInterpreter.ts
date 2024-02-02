@@ -13,7 +13,7 @@ type RoverInterpreterCommands = (typeof roverInterpreterCommands)[keyof typeof r
 export class RoverInterpreter {
   constructor(private readonly rover: IRover) {}
 
-  private execute(command: RoverInterpreterCommands) {
+  private async execute(command: RoverInterpreterCommands) {
     if (command === roverInterpreterCommands.F) return this.rover.forward();
     if (command === roverInterpreterCommands.B) return this.rover.backward();
     if (command === roverInterpreterCommands.L) return this.rover.turnLeft();
@@ -28,9 +28,9 @@ export class RoverInterpreter {
     let error: Error | null = null;
 
     try {
-      commands.forEach((command) => {
+      commands.forEach(async (command) => {
         const previousRover = newRovers[newRovers.length - 1] || this.rover;
-        const newRover = new RoverInterpreter(previousRover).execute(command);
+        const newRover = await new RoverInterpreter(previousRover).execute(command);
         newRovers.push(newRover);
       });
     } catch (e) {

@@ -5,10 +5,10 @@ export interface IRover {
   orientation: Orientation;
   position: Position;
 
-  turnRight(): IRover;
-  turnLeft(): IRover;
-  forward(): IRover;
-  backward(): IRover;
+  turnRight(): Promise<IRover>;
+  turnLeft(): Promise<IRover>;
+  forward(): Promise<IRover>;
+  backward(): Promise<IRover>;
 
   toString(): string;
 }
