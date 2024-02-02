@@ -4,7 +4,7 @@ import { PlanetToroidal } from "@Domain/topologie/PlanetToroidal";
 import { PlanetWithObstacle } from "@Domain/topologie/PlanetWithObstacle";
 import { Position } from "@Domain/topologie/Position";
 
-const REPEATER_ENABLED = true;
+const REPEATER_ENABLED = false;
 export const REPEATER_SERVER_PORT = 3001;
 export const REPEATER_CONNECTION_URL = "ws://localhost:3000";
 export const ROVER_SERVER_PORT = 3000;
