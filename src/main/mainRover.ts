@@ -2,7 +2,12 @@ import { WebsocketProtocolCommunicationServer } from "@Infrastructure/protocolCo
 import { RemoteRover } from "@Domain/rover/RemoteRover";
 import { IRover } from "@Domain/rover/Rover.interface";
 import { RoverBuilder } from "@Domain/rover/RoverBuilder";
-import { INITIAL_ROVER_ORIENTATION, INITIAL_ROVER_POSITION, PLANET, ROVER_SERVER_PORT } from "@Infrastructure/configuration";
+import {
+  INITIAL_ROVER_ORIENTATION,
+  INITIAL_ROVER_POSITION,
+  PLANET,
+  ROVER_SERVER_PORT,
+} from "@Infrastructure/configuration";
 
 try {
   const protocolCommunicationServer = new WebsocketProtocolCommunicationServer(ROVER_SERVER_PORT);

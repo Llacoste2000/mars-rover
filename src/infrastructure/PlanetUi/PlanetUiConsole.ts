@@ -2,7 +2,6 @@ import { Integer } from "@Domain//topologie/Integer";
 import { Orientation } from "@Domain//topologie/Orientation";
 import { Position } from "@Domain//topologie/Position";
 import { IPlanetUi } from "./PlanetUi.interface";
-import { Message } from "@Infrastructure/protocolCommunication/Message.interface";
 
 export class PlanetUiConsole implements IPlanetUi {
   constructor(
