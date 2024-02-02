@@ -1,8 +1,8 @@
-import { Integer } from "@Domaintopologie/Integer";
-import { Orientation } from "@Domaintopologie/Orientation";
-import { IPlanet } from "@Domaintopologie/Planet.interface";
-import { PlanetToroidal } from "@Domaintopologie/PlanetToroidal";
-import { Position } from "@Domaintopologie/Position";
+import { Integer } from "@Domain/topologie/Integer";
+import { Orientation } from "@Domain/topologie/Orientation";
+import { IPlanet } from "@Domain/topologie/Planet.interface";
+import { PlanetToroidal } from "@Domain/topologie/PlanetToroidal";
+import { Position } from "@Domain/topologie/Position";
 import { Rover } from "./Rover";
 
 // Service

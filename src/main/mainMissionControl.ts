@@ -1,4 +1,4 @@
-import { MissionControl } from "@DomainmissionControl/MissionControl";
+import { MissionControl } from "@Domain/missionControl/MissionControl";
 import { WebSocketProtocolCommunicationClient } from "@Infrastructure/protocolCommunication/WebSocketProtocolCommunicationClient";
 import { UserInputThread } from "@Infrastructure/userInputThread/userInputThread";
 import {

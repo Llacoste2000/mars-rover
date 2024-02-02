@@ -1,5 +1,5 @@
 import { IRover } from "./Rover.interface";
-import { RoverInterpreter } from "@DomainroverInterpreter/RoverInterpreter";
+import { RoverInterpreter } from "@Domain/roverInterpreter/RoverInterpreter";
 import { IProtocolCommunication } from "@Infrastructure/protocolCommunication/ProtocolCommunication.interface";
 import { Message, MessageCommand } from "@Infrastructure/protocolCommunication/Message.interface";
 import { ObstacleError } from "@Infrastructure/errors/ObstacleError";

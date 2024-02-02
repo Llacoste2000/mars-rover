@@ -1,4 +1,4 @@
-import { IRover } from "@Domainrover/Rover.interface";
+import { IRover } from "@Domain/rover/Rover.interface";
 
 const roverInterpreterCommands = {
   F: "F",
