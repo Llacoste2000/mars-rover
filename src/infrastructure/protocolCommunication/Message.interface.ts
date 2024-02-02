@@ -7,12 +7,12 @@ export type MessageCommand = {
   data: string;
 };
 
-type MessageObstacle = {
+export type MessageObstacle = {
   type: "obstacle";
   data: { x: number; y: number };
 };
 
-type MessagePosition = {
+export type MessagePosition = {
   type: "positionsAndOrientations";
   data: {
     position: { x: number; y: number };
