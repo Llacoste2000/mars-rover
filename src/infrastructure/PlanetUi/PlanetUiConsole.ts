@@ -5,16 +5,16 @@ import { IPlanetUi } from "./PlanetUi.interface";
 
 export class PlanetUiConsole implements IPlanetUi {
   constructor(
-    private readonly planetSize: Position,
-    private readonly obstaclesPositions: Position[],
-    private readonly roverPosition: Position,
-    private readonly roverOrientation: Orientation,
-    private readonly discoveredPositions: Position[],
+    private readonly _planetSize: Position,
+    private readonly _obstaclesPositions: Position[],
+    private readonly _roverPosition: Position,
+    private readonly _roverOrientation: Orientation,
+    private readonly _discoveredPositions: Position[],
   ) {}
 
   public display() {
     console.log("========================");
-    for (let columnIndex = this.planetSize.y.toNumber() - 1; columnIndex >= 0; columnIndex--) {
+    for (let columnIndex = this._planetSize.y.toNumber() - 1; columnIndex >= 0; columnIndex--) {
       console.log(this.generateLine(columnIndex));
     }
     console.log("========================");
@@ -22,7 +22,7 @@ export class PlanetUiConsole implements IPlanetUi {
 
   private generateLine(columnIndex: number) {
     let line = "";
-    for (let rowIndex = 0; rowIndex < this.planetSize.x.toNumber(); rowIndex++) {
+    for (let rowIndex = 0; rowIndex < this._planetSize.x.toNumber(); rowIndex++) {
       line += this.getLineCharacter(new Position(new Integer(rowIndex), new Integer(columnIndex)));
     }
     return line;
@@ -30,10 +30,10 @@ export class PlanetUiConsole implements IPlanetUi {
 
   private getLineCharacter(position: Position) {
     if (this.positionHasRover(position)) {
-      if (this.roverOrientation === Orientation.North) return "^";
-      if (this.roverOrientation === Orientation.South) return "v";
-      if (this.roverOrientation === Orientation.East) return ">";
-      if (this.roverOrientation === Orientation.West) return "<";
+      if (this._roverOrientation === Orientation.North) return "^";
+      if (this._roverOrientation === Orientation.South) return "v";
+      if (this._roverOrientation === Orientation.East) return ">";
+      if (this._roverOrientation === Orientation.West) return "<";
     }
     if (this.positionHasObstacle(position)) return "O";
     if (this.positionIsDiscovered(position)) return "_";
@@ -41,34 +41,34 @@ export class PlanetUiConsole implements IPlanetUi {
   }
 
   private positionHasRover(position: Position) {
-    return this.roverPosition.equals(position);
+    return this._roverPosition.equals(position);
   }
 
   private positionHasObstacle(position: Position) {
-    return this.obstaclesPositions.find((obstaclePosition) => {
+    return this._obstaclesPositions.find((obstaclePosition) => {
       return obstaclePosition.equals(position);
     });
   }
 
   private positionIsDiscovered(position: Position) {
-    return this.discoveredPositions.find((discoveredPosition) => {
+    return this._discoveredPositions.find((discoveredPosition) => {
       return discoveredPosition.equals(position);
     });
   }
 
   public addObstaclePosition(obstaclePosition: Position) {
     return new PlanetUiConsole(
-      this.planetSize,
-      [...this.obstaclesPositions, obstaclePosition],
-      this.roverPosition,
-      this.roverOrientation,
-      this.discoveredPositions,
+      this._planetSize,
+      [...this._obstaclesPositions, obstaclePosition],
+      this._roverPosition,
+      this._roverOrientation,
+      this._discoveredPositions,
     );
   }
   public newRoverPositionAndOrientation(position: Position, orientation: Orientation) {
-    return new PlanetUiConsole(this.planetSize, this.obstaclesPositions, position, orientation, [
-      ...this.discoveredPositions,
-      this.roverPosition,
+    return new PlanetUiConsole(this._planetSize, this._obstaclesPositions, position, orientation, [
+      ...this._discoveredPositions,
+      this._roverPosition,
     ]);
   }
 }

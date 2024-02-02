@@ -15,48 +15,48 @@ type RoverConfig = {
 };
 
 export class PlanetUiBuilder {
-  private roverConfig: RoverConfig = {
+  private _roverConfig: RoverConfig = {
     roverPosition: new Position(new Integer(0), new Integer(0)),
     roverOrientation: Orientation.North,
   };
-  private planetConfig: PlanetConfig = {
+  private _planetConfig: PlanetConfig = {
     planetObstacles: [],
     planetSize: new Position(new Integer(5), new Integer(5)),
     discoveredPositions: [],
   };
 
   public withPlanetSize(planetSize: Position) {
-    this.planetConfig.planetSize = planetSize;
+    this._planetConfig.planetSize = planetSize;
     return this;
   }
 
   public withRoverPosition(roverPosition: Position) {
-    this.roverConfig.roverPosition = roverPosition;
+    this._roverConfig.roverPosition = roverPosition;
     return this;
   }
 
   public withPlanetObstacles(planetObstacles: Position[]) {
-    this.planetConfig.planetObstacles = planetObstacles;
+    this._planetConfig.planetObstacles = planetObstacles;
     return this;
   }
 
   public withDiscoveredPositions(discoveredPositions: Position[]) {
-    this.planetConfig.discoveredPositions = discoveredPositions;
+    this._planetConfig.discoveredPositions = discoveredPositions;
     return this;
   }
 
   public withRoverOrientation(roverOrientation: Orientation) {
-    this.roverConfig.roverOrientation = roverOrientation;
+    this._roverConfig.roverOrientation = roverOrientation;
     return this;
   }
 
   public build() {
     return new PlanetUiConsole(
-      this.planetConfig.planetSize,
-      this.planetConfig.planetObstacles,
-      this.roverConfig.roverPosition,
-      this.roverConfig.roverOrientation,
-      this.planetConfig.discoveredPositions,
+      this._planetConfig.planetSize,
+      this._planetConfig.planetObstacles,
+      this._roverConfig.roverPosition,
+      this._roverConfig.roverOrientation,
+      this._planetConfig.discoveredPositions,
     );
   }
 }
