@@ -1,4 +1,4 @@
-import { OrientationLetter } from "@Domain//topologie/Orientation";
+import { OrientationLetter } from "@Domain/topologie/Orientation";
 
 export type Message = MessageCommand | MessageObstacle | MessagePosition | MessageError;
 

@@ -1,6 +1,6 @@
-import { Integer } from "@Domain//topologie/Integer";
-import { Orientation } from "@Domain//topologie/Orientation";
-import { Position } from "@Domain//topologie/Position";
+import { Integer } from "@Domain/topologie/Integer";
+import { Orientation } from "@Domain/topologie/Orientation";
+import { Position } from "@Domain/topologie/Position";
 import { PlanetUiConsole } from "./PlanetUiConsole";
 
 type PlanetConfig = {
